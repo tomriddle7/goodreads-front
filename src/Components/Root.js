@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import GlobalStyles from "./GlobalStyles";
-import Loader from "./Loader";
+import Router from "Components/Router";
 
 class Root extends Component {
   render() {
     return (
-        <>
-        <Loader />
+      <>
+        <Router />
         <GlobalStyles />
-        </>
+      </>
     )
   }
 }
