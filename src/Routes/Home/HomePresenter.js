@@ -3,13 +3,17 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "../../Components/Loader";
+import Poster from "../../Components/Poster";
 
 const Container = styled.div`
   padding: 20px;
 `;
 
 const Section = styled.div`
-  padding: 20px;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 125px);
+  grid-gap: 25px;
 `;
 
 const HomePresenter = ({ nowPlaying, loading, error }) => (
@@ -27,7 +31,16 @@ const HomePresenter = ({ nowPlaying, loading, error }) => (
         {nowPlaying && nowPlaying.length > 0 && (
           <Section>
             {nowPlaying.map(movie => (
-                movie.name
+              <Poster
+                key={movie.isbn}
+                isbn={movie.isbn}
+                name={movie.name}
+                author={movie.author}
+                publisher={movie.publisher}
+                pub_year={movie.pub_year}
+                volume={movie.volume}
+                volume={movie.kdc}
+              />
             ))}
           </Section>
         )}
@@ -39,14 +52,12 @@ const HomePresenter = ({ nowPlaying, loading, error }) => (
 
 HomePresenter.propTypes = {
   nowPlaying: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    isbn: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     publisher: PropTypes.string.isRequired,
     pub_year: PropTypes.string.isRequired,
-    artistId: PropTypes.string.isRequired,
     volume: PropTypes.string.isRequired,
-    isbn: PropTypes.string.isRequired,
     kdc: PropTypes.string.isRequired
   }).isRequired),
   loading: PropTypes.bool.isRequired,
