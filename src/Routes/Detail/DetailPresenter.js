@@ -35,10 +35,10 @@ const Content = styled.div`
 
 const Cover = styled.div`
   width: 30%;
+  height: 30%;
   background-image: url(${props => props.bgImage});
-  background-position: center center;
+  background-position: center;
   background-size: cover;
-  height: 100%;
   border-radius: 5px;
 `;
 
@@ -80,55 +80,46 @@ const DetailPresenter = ({ result, loading, error }) =>
     <Container>
       <Helmet>
         <title>
-          {result.original_title ? result.original_title : result.original_name}{" "}
+          {result.name}{" "}
           | Nomflix
         </title>
       </Helmet>
-      <Backdrop
-        bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
-      />
       <Content>
         <Cover
-          bgImage={
-            result.poster_path
-              ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-              : require("../../assets/noPosterSmall.png")
-          }
+          bgImage={require("../../Assets/noPosterSmall.png")}
         />
         <Data>
           <Title>
-            {result.original_title
-              ? result.original_title
-              : result.original_name}
+            {result.name}
           </Title>
           <ItemContainer>
             <Item>
-              {result.release_date
-                ? result.release_date.substring(0, 4)
-                : result.first_air_date.substring(0, 4)}
+              {result.author}
             </Item>
             <Divider>•</Divider>
             <Item>
-              {result.runtime ? result.runtime : result.episode_run_time[0]} min
+              {result.pub_year}
             </Item>
             <Divider>•</Divider>
             <Item>
-              {result.genres &&
-                result.genres.map((genre, index) =>
-                  index === result.genres.length - 1
-                    ? genre.name
-                    : `${genre.name} / `
-                )}
+              {result.publisher}
             </Item>
           </ItemContainer>
-          <Overview>{result.overview}</Overview>
         </Data>
       </Content>
     </Container>
   );
 
 DetailPresenter.propTypes = {
-  result: PropTypes.object,
+  result: PropTypes.arrayOf(PropTypes.shape({
+    isbn: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    publisher: PropTypes.string.isRequired,
+    pub_year: PropTypes.string.isRequired,
+    volume: PropTypes.string.isRequired,
+    kdc: PropTypes.string.isRequired
+  }).isRequired),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
