@@ -6,5 +6,8 @@ const api = axios.create({
 
 export const booksApi = {
   getList: () => api.get("?format=json"),
-  getInstance: ibsn => api.get(`${ibsn}`)
+  getInstance: ibsn => api.get(`${ibsn}`),
+  getSearchbyTerm: term => api.get(`?term=${term}`),
+  getSearchbyAuther: auther => api.get(`?auther=${auther}`),
+  getSearchbyYear: year => api.get(`?year=${year}`),
 };

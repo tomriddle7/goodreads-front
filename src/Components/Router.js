@@ -5,14 +5,16 @@ import {
     Redirect,
     Switch
   } from "react-router-dom";
-import Home from "../Routes/Home";
+import Book from "../Routes/Book";
+import Search from "../Routes/Search";
 import Detail from "../Routes/Detail";
 
 export default () => (
   <Router>
     <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/book/:id" component={Detail} />
+      <Route path="/" exact component={Book} />
+      <Route path="/search" component={Search} />
+      <Route path="/book/:id" exact component={Detail} />
       <Redirect from="*" to="/" />
     </Switch>
   </Router>

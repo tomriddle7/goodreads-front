@@ -16,7 +16,7 @@ const Section = styled.div`
   grid-gap: 25px;
 `;
 
-const HomePresenter = ({ nowPlaying, loading, error }) => (
+const BookPresenter = ({ nowPlaying, loading, error }) => (
   <>
     <Helmet>
       <title>Movies | Nomflix</title>
@@ -50,7 +50,7 @@ const HomePresenter = ({ nowPlaying, loading, error }) => (
   </>
 );
 
-HomePresenter.propTypes = {
+BookPresenter.propTypes = {
   nowPlaying: PropTypes.arrayOf(PropTypes.shape({
     isbn: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -64,4 +64,4 @@ HomePresenter.propTypes = {
   error: PropTypes.string
 };
 
-export default HomePresenter;
+export default BookPresenter;
