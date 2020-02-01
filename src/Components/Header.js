@@ -2,7 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
-const Header = styled.footer`
+const Header = styled.header`
   color: white;
   position: fixed;
   top: 0;
