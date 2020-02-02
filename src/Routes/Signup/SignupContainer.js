@@ -1,5 +1,5 @@
 import React from "react";
-import LoginPresenter from "./LoginPresenter";
+import SignupPresenter from "./SignupPresenter";
 import { loginApi } from "api";
 
 export default class extends React.Component {
@@ -37,7 +37,7 @@ export default class extends React.Component {
     try {
       const {
         data: { results: appResults }
-      } = await loginApi.login(username, password);
+      } = await loginApi.signup(username, password);
       this.setState({
         appResults
       });
@@ -51,7 +51,7 @@ export default class extends React.Component {
   render() {
     const { username, password, loading, error } = this.state;
     return (
-      <LoginPresenter
+      <SignupPresenter
         username={username}
         password={password}
         loading={loading}

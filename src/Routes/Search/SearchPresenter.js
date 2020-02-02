@@ -72,7 +72,7 @@ const SearchPresenters = ({
       <div>
         <Input
           placeholder="게임, 앱, 스토리 등"
-        value={searchTerm}
+          value={searchTerm}
           onChange={updateTerm}
         />
       </div>

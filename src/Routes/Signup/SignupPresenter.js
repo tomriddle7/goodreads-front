@@ -14,7 +14,7 @@ const Form = styled.form``;
 
 const Input = styled.input``;
 
-const LoginPresenter = ({
+const SignupPresenter = ({
   username,
   password,
   handleChange,
@@ -24,7 +24,7 @@ const LoginPresenter = ({
 }) => (
   <Container>
     <Helmet>
-      <title>Login | Goodreads</title>
+      <title>Signup | Goodreads</title>
     </Helmet>
     <Form onSubmit={handleSubmit}>
       <Label htmlFor="username">Username</Label>
@@ -50,4 +50,4 @@ const LoginPresenter = ({
   </Container>
 );
 
-export default LoginPresenter;
+export default SignupPresenter;
