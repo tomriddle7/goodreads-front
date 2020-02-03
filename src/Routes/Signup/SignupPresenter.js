@@ -58,11 +58,29 @@ const SignupPresenter = ({
         onChange={handleChange}
         required
       />
-      <Label htmlFor="password">Username</Label>
+      <Label htmlFor="email">e-mail</Label>
+      <Input
+        type="email"
+        name="email"
+        placeholder="email"
+        value={password}
+        onChange={handleChange}
+        required
+      />
+      <Label htmlFor="password1">Password1</Label>
       <Input
         type="password"
-        name="password"
-        placeholder="Password"
+        name="password1"
+        placeholder="password"
+        value={password}
+        onChange={handleChange}
+        required
+      />
+      <Label htmlFor="password2">Password2</Label>
+      <Input
+        type="password"
+        name="password2"
+        placeholder="password"
         value={password}
         onChange={handleChange}
         required

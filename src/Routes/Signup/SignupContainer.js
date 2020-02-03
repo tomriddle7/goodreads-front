@@ -4,10 +4,12 @@ import { loginApi } from "api";
 
 export default class extends React.Component {
   state = {
-    appResults: null,
+    token: null,
     username: "",
-    password: "",
-    loading: false,
+    email: "",
+    password1: "",
+    password2: "",
+    loading: true,
     error: null
   };
 
@@ -23,23 +25,21 @@ export default class extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
-    console.log(username, password);
-    if (username !== "" && password !== "") {
-      this.loginTerm();
+    const { username, email, password1, password2 } = this.state;
+    if (username !== "" && email !== "" && password1 !== "" && password2 !== "" && password1 === password2) {
+      this.signupTerm();
     }
   };
 
-  loginTerm = async () => {
-    const { username, password } = this.state;
-    console.log(username, password);
-    this.setState({ loading: true });
+  signupTerm = async () => {
+    const { username, email, password1, password2 } = this.state;
+    console.log(username, email, password1, password2);
     try {
       const {
-        data: { results: appResults }
-      } = await loginApi.signup(username, password);
+        data: { token }
+      } = await loginApi.signup(username, email, password1, password2);
       this.setState({
-        appResults
+        token
       });
     } catch {
       this.setState({ error: "Can't find results." });

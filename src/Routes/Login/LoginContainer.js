@@ -5,10 +5,11 @@ import { loginApi } from "api";
 export default class extends React.Component {
   state = {
     token: null,
+    resStatus: "",
     tokenResult: null,
     username: "",
     password: "",
-    loading: false,
+    loading: true,
     error: null
   };
 
@@ -33,18 +34,21 @@ export default class extends React.Component {
   loginTerm = async () => {
     const { username, password } = this.state;
     console.log(username, password);
-    this.setState({ loading: true });
     try {
       const {
-        data: { token }
+        data: { token },
+        status: { resStatus }
       } = await loginApi.login(username, password);
       this.setState({
         token
       });
       console.log(token);
+      if(resStatus == "200OK") {
+        console.log(this.state.token);
+      }
       const {
         data: { tokenResult }
-      } = await loginApi.user("Token " + token);
+      } = await loginApi.user("Token " + token); 
       this.setState({
         tokenResult
       });

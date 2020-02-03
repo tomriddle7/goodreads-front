@@ -18,10 +18,12 @@ export const loginApi = {
       username: encodeURIComponent(idTerm),
       password: encodeURIComponent(passwordTerm)
     }),
-  signup: (idTerm, passwordTerm) =>
+  signup: (idTerm, emailTerm, password1Term, password2Term) =>
     api.post("accounts/signup/", {
       username: encodeURIComponent(idTerm),
-      password: encodeURIComponent(passwordTerm)
+      email: emailTerm,
+      password1: encodeURIComponent(password1Term),
+      password2: encodeURIComponent(password2Term)
     }),
   user: (token) =>
     api.get("users/?format=json", {
