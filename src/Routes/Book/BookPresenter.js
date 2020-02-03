@@ -16,7 +16,7 @@ const Section = styled.div`
   grid-gap: 25px;
 `;
 
-const BookPresenter = ({ nowPlaying, loading, error }) => (
+const BookPresenter = ({ bookList, loading, error }) => (
   <>
     <Helmet>
       <title>Movies | Nomflix</title>
@@ -28,9 +28,9 @@ const BookPresenter = ({ nowPlaying, loading, error }) => (
         <Helmet>
           <title>Movies | Nomflix</title>
         </Helmet>
-        {nowPlaying && nowPlaying.length > 0 && (
+        {bookList && bookList.length > 0 && (
           <Section>
-            {nowPlaying.map(movie => (
+            {bookList.map(movie => (
               <Poster
                 key={movie.isbn}
                 isbn={movie.isbn}
@@ -51,7 +51,7 @@ const BookPresenter = ({ nowPlaying, loading, error }) => (
 );
 
 BookPresenter.propTypes = {
-  nowPlaying: PropTypes.arrayOf(PropTypes.shape({
+  bookList: PropTypes.arrayOf(PropTypes.shape({
     isbn: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,

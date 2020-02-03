@@ -4,7 +4,8 @@ import { loginApi } from "api";
 
 export default class extends React.Component {
   state = {
-    appResults: null,
+    token: null,
+    tokenResult: null,
     username: "",
     password: "",
     loading: false,
@@ -36,11 +37,15 @@ export default class extends React.Component {
     this.setState({ loading: true });
     try {
       const {
-        data: { results: appResults }
+        data: { results: token }
       } = await loginApi.login(username, password);
       this.setState({
-        appResults
+        token
       });
+      console.log(this.state);
+      const {
+        data: { results: tokenResult }
+      } = await loginApi.user(token);
     } catch {
       this.setState({ error: "Can't find results." });
     } finally {

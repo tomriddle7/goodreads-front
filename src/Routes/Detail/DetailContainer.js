@@ -28,8 +28,8 @@ export default class extends React.Component {
     }
     let result = null;
     try {
-        ({ data: result } = await booksApi.getInstance(parsedId));
-        console.log(result);
+      ({ data: result } = await booksApi.getInstance(parsedId));
+      console.log(result);
     } catch {
       this.setState({ error: "Can't find anything." });
     } finally {

@@ -4,7 +4,7 @@ import { booksApi } from "api";
 
 export default class extends React.Component {
   state = {
-    nowPlaying: null,
+    bookList: null,
     error: null,
     loading: true
   };
@@ -12,12 +12,12 @@ export default class extends React.Component {
   async componentDidMount() {
     try {
       const {
-        data: { results: nowPlaying }
+        data: { results: bookList }
       } = await booksApi.getList();
       this.setState({
-        nowPlaying
+        bookList
       });
-      console.log(nowPlaying);
+      console.log(bookList);
     } catch {
       this.setState({
         error: "Can't find movie information."
@@ -30,10 +30,10 @@ export default class extends React.Component {
   }
 
   render() {
-    const { nowPlaying, error, loading } = this.state;
+    const { bookList, error, loading } = this.state;
     return (
       <BookPresenter
-        nowPlaying={nowPlaying}
+        bookList={bookList}
         error={error}
         loading={loading}
       />

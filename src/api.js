@@ -15,16 +15,18 @@ export const booksApi = {
 export const loginApi = {
   login: (idTerm, passwordTerm) =>
     api.post("accounts/login/", {
-      headers: {
-        username: encodeURIComponent(idTerm),
-        password: encodeURIComponent(passwordTerm)
-      }
+      username: encodeURIComponent(idTerm),
+      password: encodeURIComponent(passwordTerm)
     }),
   signup: (idTerm, passwordTerm) =>
     api.post("accounts/signup/", {
+      username: encodeURIComponent(idTerm),
+      password: encodeURIComponent(passwordTerm)
+    }),
+  user: (token) =>
+    api.get("users/?format=json", {
       headers: {
-        username: encodeURIComponent(idTerm),
-        password: encodeURIComponent(passwordTerm)
+        Authorization: token
       }
-    })
+    }),
 };
