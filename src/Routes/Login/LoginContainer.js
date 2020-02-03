@@ -36,15 +36,18 @@ export default class extends React.Component {
     this.setState({ loading: true });
     try {
       const {
-        data: { token: token }
+        data: { token }
       } = await loginApi.login(username, password);
       this.setState({
         token
       });
       console.log(token);
       const {
-        data: { results: tokenResult }
-      } = await loginApi.user(token);
+        data: { tokenResult }
+      } = await loginApi.user("Token " + token);
+      this.setState({
+        tokenResult
+      });
       console.log(tokenResult);
     } catch {
       this.setState({ error: "Can't find results." });
