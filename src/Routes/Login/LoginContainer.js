@@ -25,7 +25,6 @@ export default class extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { username, password } = this.state;
-    console.log(username, password);
     if (username !== "" && password !== "") {
       this.loginTerm();
     }
@@ -37,15 +36,16 @@ export default class extends React.Component {
     this.setState({ loading: true });
     try {
       const {
-        data: { results: token }
+        data: { token: token }
       } = await loginApi.login(username, password);
       this.setState({
         token
       });
-      console.log(this.state);
+      console.log(token);
       const {
         data: { results: tokenResult }
       } = await loginApi.user(token);
+      console.log(tokenResult);
     } catch {
       this.setState({ error: "Can't find results." });
     } finally {
