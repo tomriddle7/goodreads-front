@@ -40,10 +40,11 @@ export default class extends React.Component {
         status: { resStatus }
       } = await loginApi.login(username, password);
       this.setState({
-        token
+        token,
+        resStatus
       });
-      console.log(token);
-      if(resStatus == "200OK") {
+      console.log(resStatus);
+      if(resStatus == "200") {
         console.log(this.state.token);
       }
       const {
