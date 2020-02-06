@@ -25,19 +25,19 @@ export default class extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { username, email, password1, password2 } = this.state;
-    if (username !== "" && email !== "" && password1 !== "" && password2 !== "" && password1 === password2) {
+    const { email, password1, password2 } = this.state;
+    if (email !== "" && password1 !== "" && password2 !== "" && password1 === password2) {
       this.signupTerm();
     }
   };
 
   signupTerm = async () => {
-    const { username, email, password1, password2 } = this.state;
-    console.log(username, email, password1, password2);
+    const { email, password1, password2 } = this.state;
+    console.log(email, password1, password2);
     try {
       const {
         data: { token }
-      } = await loginApi.signup(username, email, password1, password2);
+      } = await loginApi.signup(email, password1, password2);
       this.setState({
         token
       });
@@ -49,10 +49,10 @@ export default class extends React.Component {
   };
 
   render() {
-    const { username, password, loading, error } = this.state;
+    const { email, password, loading, error } = this.state;
     return (
       <SignupPresenter
-        username={username}
+        email={email}
         password={password}
         loading={loading}
         error={error}

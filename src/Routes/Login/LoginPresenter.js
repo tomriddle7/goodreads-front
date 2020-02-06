@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
-import Loader from "../../Components/Loader";
 
 const Container = styled.div`
   padding: 20px;
@@ -36,8 +35,21 @@ const Submit = styled.input`
   color: #0b84fe;
 `;
 
+const Social = styled.a`
+  width: 222px;
+  height: 49px;
+  border-radius: 4px;
+`;
+
+const KaKaoImg = styled.img`
+  display: inline;
+  width: auto;
+  height: 100%;
+  margin: 0px 5px;
+`;
+
 const LoginPresenter = ({
-  username,
+  email,
   password,
   handleChange,
   handleSubmit,
@@ -49,16 +61,16 @@ const LoginPresenter = ({
       <title>Login | Goodreads</title>
     </Helmet>
     <Form onSubmit={handleSubmit}>
-      <Label htmlFor="username">Username</Label>
+      <Label htmlFor="email">e-mail</Label>
       <Input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={username}
+        type="email"
+        name="email"
+        placeholder="email"
+        value={email}
         onChange={handleChange}
         required
       />
-      <Label htmlFor="password">Username</Label>
+      <Label htmlFor="password">Password</Label>
       <Input
         type="password"
         name="password"
@@ -69,6 +81,8 @@ const LoginPresenter = ({
       />
       <Submit type="submit" value="Submit"></Submit>
     </Form>
+    <Social href="accounts/login/kakao/"><KaKaoImg src="../../Assets/kakaoLoginBtn.png"/></Social>
+    
   </Container>
 );
 

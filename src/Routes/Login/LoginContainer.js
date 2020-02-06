@@ -5,13 +5,18 @@ import { loginApi } from "api";
 export default class extends React.Component {
   state = {
     token: null,
-    resStatus: "",
     tokenResult: null,
-    username: "",
+    email: "",
     password: "",
     loading: true,
     error: null
   };
+
+  kakaoLogin = async () => {
+    const {
+        data: { temp }
+      } = await loginApi.loginKakao();
+  }
 
   handleChange = event => {
     const name = event.target.name;
@@ -25,35 +30,29 @@ export default class extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
-    if (username !== "" && password !== "") {
+    const { email, password } = this.state;
+    if (email !== "" && password !== "") {
       this.loginTerm();
     }
   };
 
   loginTerm = async () => {
-    const { username, password } = this.state;
-    console.log(username, password);
+    const { email, password } = this.state;
+    console.log(email, password);
     try {
       const {
         data: { token },
-        status: { resStatus }
-      } = await loginApi.login(username, password);
+        status: resStatus,
+        statusText: resStatusText
+      } = await loginApi.login(email, password);
       this.setState({
-        token,
-        resStatus
+        token
       });
-      console.log(resStatus);
-      if(resStatus == "200") {
-        console.log(this.state.token);
+      console.log(resStatusText);
+      if(resStatus === 200 && resStatusText === "OK") {
+        //로그인 성공
+        this.props.history.push('/Home')
       }
-      const {
-        data: { tokenResult }
-      } = await loginApi.user("Token " + token); 
-      this.setState({
-        tokenResult
-      });
-      console.log(tokenResult);
     } catch {
       this.setState({ error: "Can't find results." });
     } finally {
@@ -62,10 +61,10 @@ export default class extends React.Component {
   };
 
   render() {
-    const { username, password, loading, error } = this.state;
+    const { email, password, loading, error } = this.state;
     return (
       <LoginPresenter
-        username={username}
+        email={email}
         password={password}
         loading={loading}
         error={error}

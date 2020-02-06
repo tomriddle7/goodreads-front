@@ -37,7 +37,7 @@ const Submit = styled.input`
 `;
 
 const SignupPresenter = ({
-  username,
+  email,
   password,
   handleChange,
   handleSubmit,
@@ -49,21 +49,12 @@ const SignupPresenter = ({
       <title>Signup | Goodreads</title>
     </Helmet>
     <Form onSubmit={handleSubmit}>
-      <Label htmlFor="username">Username</Label>
-      <Input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={username}
-        onChange={handleChange}
-        required
-      />
       <Label htmlFor="email">e-mail</Label>
       <Input
         type="email"
         name="email"
         placeholder="email"
-        value={password}
+        value={email}
         onChange={handleChange}
         required
       />

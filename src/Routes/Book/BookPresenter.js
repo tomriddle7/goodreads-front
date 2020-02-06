@@ -34,7 +34,7 @@ const BookPresenter = ({ bookList, loading, error }) => (
               <Poster
                 key={movie.isbn}
                 isbn={movie.isbn}
-                name={movie.name}
+                name={movie.title}
                 author={movie.author}
                 publisher={movie.publisher}
                 pub_year={movie.pub_year}
