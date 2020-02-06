@@ -81,7 +81,7 @@ const LoginPresenter = ({
       />
       <Submit type="submit" value="Submit"></Submit>
     </Form>
-    <Social href="accounts/login/kakao/"><KaKaoImg src="../../Assets/kakaoLoginBtn.png"/></Social>
+    <Social href="accounts/login/kakao/"><KaKaoImg src={require("../../Assets/kakaoLoginBtn.png")}/></Social>
     
   </Container>
 );
