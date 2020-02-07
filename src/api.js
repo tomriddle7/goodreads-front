@@ -20,9 +20,8 @@ export const loginApi = {
     }),
   loginKakao: () =>
     api.post("accounts/login/kakao/"),
-  signup: (idTerm, emailTerm, password1Term, password2Term) =>
+  signup: (emailTerm, password1Term, password2Term) =>
     api.post("accounts/signup/", {
-      username: encodeURIComponent(idTerm),
       email: emailTerm,
       password1: encodeURIComponent(password1Term),
       password2: encodeURIComponent(password2Term)

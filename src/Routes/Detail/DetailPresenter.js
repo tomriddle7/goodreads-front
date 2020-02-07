@@ -68,6 +68,10 @@ const Overview = styled.p`
   width: 50%;
 `;
 
+const DesContainer = styled.div`
+  margin: 20px 0;
+`;
+
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
     <>
@@ -80,8 +84,7 @@ const DetailPresenter = ({ result, loading, error }) =>
     <Container>
       <Helmet>
         <title>
-          {result.name}{" "}
-          | Nomflix
+          {result.title} | Nomflix
         </title>
       </Helmet>
       <Content>
@@ -90,7 +93,7 @@ const DetailPresenter = ({ result, loading, error }) =>
         />
         <Data>
           <Title>
-            {result.name}
+            {result.title}
           </Title>
           <ItemContainer>
             <Item>
@@ -105,6 +108,9 @@ const DetailPresenter = ({ result, loading, error }) =>
               {result.publisher}
             </Item>
           </ItemContainer>
+          <DesContainer>
+            {result.description}
+          </DesContainer>
         </Data>
       </Content>
     </Container>
@@ -113,7 +119,7 @@ const DetailPresenter = ({ result, loading, error }) =>
 DetailPresenter.propTypes = {
   result: PropTypes.arrayOf(PropTypes.shape({
     isbn: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     publisher: PropTypes.string.isRequired,
     pub_year: PropTypes.string.isRequired,

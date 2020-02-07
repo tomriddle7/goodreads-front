@@ -12,12 +12,6 @@ export default class extends React.Component {
     error: null
   };
 
-  kakaoLogin = async () => {
-    const {
-        data: { temp }
-      } = await loginApi.loginKakao();
-  }
-
   handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
