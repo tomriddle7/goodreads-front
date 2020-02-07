@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
-import Loader from "../../Components/Loader";
+import ErrorText from "Components/ErrorText";
 
 const Container = styled.div`
   padding: 20px;
@@ -38,7 +38,8 @@ const Submit = styled.input`
 
 const SignupPresenter = ({
   email,
-  password,
+  password1,
+  password2,
   handleChange,
   handleSubmit,
   loading,
@@ -58,24 +59,27 @@ const SignupPresenter = ({
         onChange={handleChange}
         required
       />
+      {error && error.email && error.email.length > 0 && <ErrorText text={error.email[0]} />}
       <Label htmlFor="password1">Password1</Label>
       <Input
         type="password"
         name="password1"
         placeholder="password"
-        value={password}
+        value={password1}
         onChange={handleChange}
         required
       />
+      {error && error.password1 && error.password1.length > 0 && <ErrorText text={error.password1[0]} />}
       <Label htmlFor="password2">Password2</Label>
       <Input
         type="password"
         name="password2"
         placeholder="password"
-        value={password}
+        value={password2}
         onChange={handleChange}
         required
       />
+      {error && error.password2 && error.password2.length > 0 && <ErrorText text={error.password2[0]} />}
       <Submit type="submit" value="Submit"></Submit>
     </Form>
   </Container>

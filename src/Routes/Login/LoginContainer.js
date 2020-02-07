@@ -32,7 +32,6 @@ export default class extends React.Component {
 
   loginTerm = async () => {
     const { email, password } = this.state;
-    console.log(email, password);
     try {
       const {
         data: { token },
