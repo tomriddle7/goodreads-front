@@ -1,6 +1,6 @@
 import React from "react";
 import BookPresenter from "./BookPresenter";
-import { booksApi } from "api";
+import { booksApi, getBookList } from "api";
 
 export default class extends React.Component {
   state = {
@@ -11,18 +11,16 @@ export default class extends React.Component {
 
   async componentDidMount() {
     try {
-      const {
-        data: { results: bookList }
-      } = await booksApi.getList();
+      const returnList = await getBookList(1);
       this.setState({
-        bookList
+        bookList: returnList
       });
-      console.log(bookList);
     } catch {
       this.setState({
         error: "Can't find movie information."
       });
     } finally {
+      console.log(this.state);
       this.setState({
         loading: false
       });
