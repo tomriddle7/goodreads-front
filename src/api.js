@@ -4,18 +4,6 @@ const api = axios.create({
   baseURL: "http://feud72.hopto.org/api/v1/"
 });
 
-let returnArray = [];
-
-export function getBookList(page){
-  return api.get(`books/?page=${page}&format=json`).then(function(response){
-    returnArray = returnArray.concat(response.data.results);
-    if(response.data.next === null) return returnArray;
-    else return getBookList(page + 1);
-  }).catch(function() {
-    return returnArray;
-  }
-)};
-
 export const booksApi = {
   getList: () => api.get("books/?format=json"),
   getInstance: ibsn => api.get(`books/${ibsn}`),
