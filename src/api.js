@@ -15,7 +15,7 @@ export const booksApi = {
 export const loginApi = {
   login: (emailTerm, passwordTerm) =>
     api.post("accounts/login/", {
-      email: encodeURIComponent(emailTerm),
+      email: emailTerm,
       password: encodeURIComponent(passwordTerm)
     }),
   loginKakao: () =>
