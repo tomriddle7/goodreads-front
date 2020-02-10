@@ -35,11 +35,7 @@ const Submit = styled.input`
   color: #0b84fe;
 `;
 
-const Social = styled.a`
-  width: 222px;
-  height: 49px;
-  border-radius: 4px;
-`;
+const Social = styled.a``;
 
 const KaKaoImg = styled.img`
   display: inline;

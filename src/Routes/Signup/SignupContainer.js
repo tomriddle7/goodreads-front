@@ -33,16 +33,17 @@ export default class extends React.Component {
 
   signupTerm = async () => {
     const { email, password1, password2 } = this.state;
-    console.log(email, password1, password2);
     try {
       const {
         data: { token }
       } = await loginApi.signup(email, password1, password2);
       this.setState({
-        token
+        token,
+        error: null
       });
-    } catch {
-      this.setState({ error: "Can't find results." });
+    } catch(msg) {
+      console.log(msg.response);
+      this.setState({ error: msg.response.data.detail });
     } finally {
       this.setState({ loading: false });
     }
