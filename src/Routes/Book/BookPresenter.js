@@ -16,7 +16,14 @@ const Section = styled.div`
   grid-gap: 25px;
 `;
 
-const BookPresenter = ({ bookList, loading, error }) => (
+const BackButton = styled("a")`
+  cursor: pointer;
+  background: #00000000;
+  color: #0b84fe;
+  text-align: center;
+`;
+
+const BookPresenter = ({ bookList, addBookList, loading, error }) => (
   <>
     <Helmet>
       <title>Movies | Nomflix</title>
@@ -44,6 +51,7 @@ const BookPresenter = ({ bookList, loading, error }) => (
             ))}
           </Section>
         )}
+        <BackButton onClick={addBookList}>See more</BackButton>
         {/*{error && <Message color="#e74c3c" text={error} />}*/}
       </Container>
     )}
@@ -60,6 +68,7 @@ BookPresenter.propTypes = {
     volume: PropTypes.string.isRequired,
     kdc: PropTypes.string.isRequired
   }).isRequired),
+  addBookList: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
