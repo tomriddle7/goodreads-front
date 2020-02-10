@@ -1,3 +1,2 @@
-export const INCREMENT = "LOGIN";
-export const DECREMENT = "LOGOUT";
-export const SET_COLOR = "SET_LOGGED";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";

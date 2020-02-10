@@ -12,8 +12,9 @@ export function Logout() {
     };
 }
 
-export function SetLogged() {
+export function setLogged(value) {
     return {
-        type: types.SET_LOGGED
+        type: SET_LOGGED,
+        token: value
     };
 }
