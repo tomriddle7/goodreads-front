@@ -45,8 +45,6 @@ const BookPresenter = ({ bookList, addBookList, loading, error }) => (
                 author={movie.author}
                 publisher={movie.publisher}
                 pub_year={movie.pub_year}
-                volume={movie.volume}
-                volume={movie.kdc}
               />
             ))}
           </Section>

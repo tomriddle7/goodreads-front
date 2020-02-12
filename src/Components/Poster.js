@@ -40,7 +40,7 @@ const Year = styled.span`
   color: rgba(255, 255, 255, 0.5);
 `;
 
-const Poster = ({ isbn, name, author, publisher, pub_year, volume, kdc }) => (
+const Poster = ({ isbn, name, author, publisher, pub_year }) => (
   <Link to={`/book/${isbn}`}>
     <Container>
       <ImageContainer>
@@ -67,9 +67,7 @@ Poster.propTypes = {
     name: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     publisher: PropTypes.string.isRequired,
-    pub_year: PropTypes.string.isRequired,
-    volume: PropTypes.string.isRequired,
-    kdc: PropTypes.string.isRequired
+    pub_year: PropTypes.string.isRequired
 };
 
 export default Poster;

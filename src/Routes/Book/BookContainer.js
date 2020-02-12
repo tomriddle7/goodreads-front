@@ -20,7 +20,6 @@ export default class extends React.Component {
         const newState = { ...prevstate };
         newState["page"] = prevstate["page"] + 1;
         newState["bookList"] = [...prevstate["bookList"], ...bookList];
-        console.log(this.state);
         return newState;
       });
     }
