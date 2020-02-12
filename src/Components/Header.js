@@ -21,7 +21,7 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  width: 25vw;
+  width: 20vw;
   height: 50px;
   text-align: center;
   border-bottom: 3px solid
@@ -47,6 +47,9 @@ export default withRouter(({ location: { pathname } }) => (
       <Item current={pathname === "/search"}>
         <SLink to="/search">Search</SLink>
       </Item>
+      <Item current={pathname === "/add"}>
+        <SLink to="/add">Add</SLink>
+      </Item>
       {Authenticated ? (
         <Item current={pathname === "/logout"}>
         <SLink to="/logout">Logout</SLink>
@@ -55,7 +58,6 @@ export default withRouter(({ location: { pathname } }) => (
         <Item current={pathname === "/login"}>
         <SLink to="/login">Login</SLink>
       </Item>
-      
       )}
       <Item current={pathname === "/signup"}>
       <SLink to="/signup">Signup</SLink>

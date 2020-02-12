@@ -33,12 +33,9 @@ const Content = styled.div`
   height: 100%;
 `;
 
-const Cover = styled.div`
-  width: 30%;
-  height: 30%;
-  background-image: url(${props => props.bgImage});
-  background-position: center;
-  background-size: cover;
+const Cover = styled.img`
+  width: auto;
+  height: 40%;
   border-radius: 5px;
 `;
 
@@ -89,7 +86,7 @@ const DetailPresenter = ({ result, loading, error }) =>
       </Helmet>
       <Content>
         <Cover
-          bgImage={require("../../Assets/noPosterSmall.png")}
+          src={result.bookImage}
         />
         <Data>
           <Title>

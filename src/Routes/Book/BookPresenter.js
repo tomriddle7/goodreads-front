@@ -23,7 +23,7 @@ const BackButton = styled("a")`
   text-align: center;
 `;
 
-const BookPresenter = ({ bookList, addBookList, loading, error }) => (
+const BookPresenter = ({ next, bookList, addBookList, loading, error }) => (
   <>
     <Helmet>
       <title>Movies | Nomflix</title>
@@ -42,6 +42,7 @@ const BookPresenter = ({ bookList, addBookList, loading, error }) => (
                 key={movie.isbn}
                 isbn={movie.isbn}
                 name={movie.title}
+                bookImage={movie.bookImage}
                 author={movie.author}
                 publisher={movie.publisher}
                 pub_year={movie.pub_year}
@@ -49,7 +50,11 @@ const BookPresenter = ({ bookList, addBookList, loading, error }) => (
             ))}
           </Section>
         )}
+        {next ? (
         <BackButton onClick={addBookList}>See more</BackButton>
+      ) : (
+        <></>
+      )}
         {/*{error && <Message color="#e74c3c" text={error} />}*/}
       </Container>
     )}

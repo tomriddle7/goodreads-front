@@ -48,7 +48,7 @@ const Input = styled.input`
   color: #808084;
 `;
 
-const SearchPresenters = ({
+const AddPresenter = ({
   appResults,
   loading,
   searchTerm,
@@ -85,13 +85,13 @@ const SearchPresenters = ({
           <Section title={"검색결과"}>
             {appResults.map(movie => (
               <Poster
-              key={movie.isbn}
-              isbn={movie.isbn}
-              name={movie.title}
-              bookImage={movie.bookImage}
-              author={movie.author}
-              publisher={movie.publisher}
-              pub_year={movie.pub_year}
+              key={movie.item.isbn}
+              isbn={movie.item.isbn}
+              name={movie.item.title}
+              bookImage={movie.item.bookImageURL}
+              author={movie.item.author}
+              publisher={movie.item.publisher}
+              pub_year={movie.item.pub_year}
             />
             ))}
           </Section>
@@ -101,7 +101,7 @@ const SearchPresenters = ({
   </Container>
 );
 
-SearchPresenters.propTypes = {
+AddPresenter.propTypes = {
   appResults: PropTypes.array,
   error: PropTypes.string,
   searchTerm: PropTypes.string,
@@ -110,4 +110,4 @@ SearchPresenters.propTypes = {
   updateTerm: PropTypes.func.isRequired
 };
 
-export default SearchPresenters;
+export default AddPresenter;

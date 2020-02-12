@@ -40,12 +40,12 @@ const Year = styled.span`
   color: rgba(255, 255, 255, 0.5);
 `;
 
-const Poster = ({ isbn, name, author, publisher, pub_year }) => (
+const Poster = ({ isbn, name, bookImage, author, publisher, pub_year }) => (
   <Link to={`/book/${isbn}`}>
     <Container>
       <ImageContainer>
         <Image
-          bgUrl={require("../Assets/noPosterSmall.png")}
+          bgUrl={bookImage}
         />
       </ImageContainer>
       <Title>

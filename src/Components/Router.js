@@ -8,6 +8,7 @@ import {
 import Header from "./Header";
 import Book from "../Routes/Book";
 import Search from "../Routes/Search";
+import Add from "../Routes/Add";
 import Login from "../Routes/Login";
 import Logout from "../Routes/Logout";
 import Signup from "../Routes/Signup";
@@ -20,6 +21,7 @@ export default () => (
       <Switch>
         <Route path="/" exact component={Book} />
         <Route path="/search" component={Search} />
+        <Route path="/Add" component={Add} />
         <Route path="/login" component={Login} />
         <Route path="/Logout" component={Logout} />
         <Route path="/Signup" component={Signup} />
