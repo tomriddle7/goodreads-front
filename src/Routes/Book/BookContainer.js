@@ -10,22 +10,25 @@ export default class extends React.Component {
     loading: true
   };
 
-  addBookList(bookList) {
-    this.setState(prevstate => {
-      const newState = { ...prevstate };
-      newState["page"] = prevstate["page"] + 1;
-      newState["bookList"] = [...prevstate["bookList"], ...bookList];
-      return newState;
-    });
-  };
+  addBookList = (async () => {
+    const {
+      data: { results: bookList },
+      status: resStatus
+    } = await booksApi.getBookList(this.state.page);
+    if(resStatus === 200) {
+      this.setState(prevstate => {
+        const newState = { ...prevstate };
+        newState["page"] = prevstate["page"] + 1;
+        newState["bookList"] = [...prevstate["bookList"], ...bookList];
+        console.log(this.state);
+        return newState;
+      });
+    }
+  });
 
-  async componentDidMount() {
+  componentDidMount() {
     try {
-      const {
-        data: { results: bookList }
-      } = await booksApi.getBookList(this.state.page);
-      this.addBookList(bookList);
-      console.log(this.state);
+      this.addBookList();
     } catch {
       this.setState({
         error: "Can't find movie information."

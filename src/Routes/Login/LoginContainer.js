@@ -44,7 +44,7 @@ export default class extends React.Component {
       console.log(resStatusText);
       if(resStatus === 200 && resStatusText === "OK") {
         //로그인 성공
-        this.props.history.push('/Home')
+        this.props.history.push('/')
       }
     } catch {
       this.setState({ error: "Can't find results." });
