@@ -1,5 +1,5 @@
 import React from "react";
-import LoginPresenter from "./LoginPresenter";
+import LogoutPresenter from "./LogoutPresenter";
 import { loginApi } from "api";
 
 export default class extends React.Component {
@@ -24,30 +24,15 @@ export default class extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { email, password } = this.state;
-    if (email !== "" && password !== "") {
-      this.loginTerm();
-    }
+    this.logoutTerm();
   };
 
-  loginTerm = async () => {
+  logoutTerm = async () => {
     const { email, password } = this.state;
     try {
-      const {
-        data: { token },
-        status: resStatus,
-        statusText: resStatusText
-      } = await loginApi.login(email, password);
-      this.setState({
-        token
-      });
-      console.log(resStatusText);
-      if(resStatus === 200 && resStatusText === "OK") {
-        //로그인 성공
-        window.sessionStorage.setItem('token', token);
-        window.sessionStorage.setItem('authenticated', true);
+        window.sessionStorage.setItem('token', null);
+        window.sessionStorage.setItem('authenticated', false);
         this.props.history.push('/');
-      }
     } catch {
       this.setState({ error: "Can't find results." });
     } finally {
@@ -58,7 +43,7 @@ export default class extends React.Component {
   render() {
     const { email, password, loading, error } = this.state;
     return (
-      <LoginPresenter
+      <LogoutPresenter
         email={email}
         password={password}
         loading={loading}
