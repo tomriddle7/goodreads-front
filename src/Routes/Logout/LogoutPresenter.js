@@ -51,7 +51,7 @@ const LogoutPresenter = ({
 }) => (
   <Container>
     <Helmet>
-      <title>Logout | Goodreads</title>
+      <title>Logout | SSReads</title>
     </Helmet>
     <Form onSubmit={handleSubmit}>
       <Submit type="submit" value="Submit"></Submit>

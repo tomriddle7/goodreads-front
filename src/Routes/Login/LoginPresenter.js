@@ -54,7 +54,7 @@ const LoginPresenter = ({
 }) => (
   <Container>
     <Helmet>
-      <title>Login | Goodreads</title>
+      <title>Login | SSReads</title>
     </Helmet>
     <Form onSubmit={handleSubmit}>
       <Label htmlFor="email">e-mail</Label>

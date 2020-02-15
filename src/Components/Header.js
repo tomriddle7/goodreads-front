@@ -11,9 +11,8 @@ const Header = styled.header`
   height: 50px;
   display: flex;
   align-items: center;
-  background-color: rgba(20, 20, 20);
+  background-color: #56CC9D;
   z-index: 10;
-  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
 `;
 
 const List = styled.ul`
@@ -23,9 +22,10 @@ const List = styled.ul`
 const Item = styled.li`
   width: 20vw;
   height: 50px;
+  font-size: 18px;
   text-align: center;
-  border-bottom: 3px solid
-    ${props => (props.current ? "#0b84fe" : "transparent")};
+  color: 
+    ${props => (props.current ? "#ffffff" : "#DDDDDD")};
   transition: border-bottom 0.5s ease-in-out;
 `;
 
