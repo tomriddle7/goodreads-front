@@ -58,7 +58,7 @@ const SearchPresenters = ({
 }) => (
   <Container>
     <Helmet>
-      <title>Search | NomadStore</title>
+      <title>Search | SSReads</title>
     </Helmet>
     <Form onSubmit={handleSubmit} className="mobileShow">
       <SearchDiv>
@@ -78,7 +78,12 @@ const SearchPresenters = ({
       </div>
     </Form>
     {loading ? (
-      <Loader />
+      <>
+        <Helmet>
+          <title>Loading | SSReads</title>
+        </Helmet>
+        <Loader />
+      </>
       ) : (
       <>
         {appResults && appResults.length > 0 && (

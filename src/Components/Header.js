@@ -11,9 +11,8 @@ const Header = styled.header`
   height: 50px;
   display: flex;
   align-items: center;
-  background-color: rgba(20, 20, 20);
+  background-color: #56CC9D;
   z-index: 10;
-  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
 `;
 
 const List = styled.ul`
@@ -23,9 +22,10 @@ const List = styled.ul`
 const Item = styled.li`
   width: 20vw;
   height: 50px;
+  font-size: 18px;
   text-align: center;
-  border-bottom: 3px solid
-    ${props => (props.current ? "#0b84fe" : "transparent")};
+  color: 
+    ${props => (props.current ? "#ffffff" : "#DDDDDD")};
   transition: border-bottom 0.5s ease-in-out;
 `;
 
@@ -36,32 +36,37 @@ const SLink = styled(Link)`
   justify-content: center;
 `;
 
-const Authenticated = window.sessionStorage.getItem('authenticated');
-
-export default withRouter(({ location: { pathname } }) => (
-  <Header>
-    <List>
-      <Item current={pathname === "/"}>
-        <SLink to="/">Home</SLink>
-      </Item>
-      <Item current={pathname === "/search"}>
-        <SLink to="/search">Search</SLink>
-      </Item>
-      <Item current={pathname === "/add"}>
-        <SLink to="/add">Add</SLink>
-      </Item>
-      {Authenticated ? (
-        <Item current={pathname === "/logout"}>
-        <SLink to="/logout">Logout</SLink>
-      </Item>
-      ) : (
-        <Item current={pathname === "/login"}>
-        <SLink to="/login">Login</SLink>
-      </Item>
-      )}
-      <Item current={pathname === "/signup"}>
-      <SLink to="/signup">Signup</SLink>
-    </Item>
-    </List>
-  </Header>
-));
+export default withRouter(({ location: { pathname } }) => {
+  const Authenticated = window.sessionStorage.getItem("authenticated");
+  console.log(Authenticated === "true");
+  return (
+    <Header>
+      <List>
+        <Item current={pathname === "/"}>
+          <SLink to="/">Home</SLink>
+        </Item>
+        <Item current={pathname === "/search"}>
+          <SLink to="/search">Search</SLink>
+        </Item>
+        <Item current={pathname === "/add"}>
+          <SLink to="/add">Add</SLink>
+        </Item>
+        {Authenticated === "true" ? (
+          <Item current={pathname === "/logout"}>
+            <SLink to="/logout">Logout</SLink>
+          </Item>
+        ) : (
+          <>
+            <Item current={pathname === "/login"}>
+              <SLink to="/login">Login</SLink>
+            </Item>
+            <Item current={pathname === "/signup"}>
+              <SLink to="/signup">Signup</SLink>
+            </Item>
+          </>
+        )}
+        
+      </List>
+    </Header>
+  );
+});

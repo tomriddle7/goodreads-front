@@ -19,21 +19,28 @@ const Section = styled.div`
 const BackButton = styled("a")`
   cursor: pointer;
   background: #00000000;
+  font-size: 16px;
   color: #0b84fe;
+  font-weight: bold;
   text-align: center;
 `;
 
 const BookPresenter = ({ next, bookList, addBookList, loading, error }) => (
   <>
     <Helmet>
-      <title>Movies | Nomflix</title>
+      <title>Books | SSReads</title>
     </Helmet>
     {loading ? (
-      <Loader />
+      <>
+        <Helmet>
+          <title>Loading | SSReads</title>
+        </Helmet>
+        <Loader />
+      </>
     ) : (
       <Container>
         <Helmet>
-          <title>Movies | Nomflix</title>
+          <title>Books | SSReads</title>
         </Helmet>
         {bookList && bookList.length > 0 && (
           <Section>

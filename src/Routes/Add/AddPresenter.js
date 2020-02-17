@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "../../Components/Loader";
-import Poster from "../../Components/Poster";
+import KakaoPoster from "../../Components/KakaoPoster";
 
 const Container = styled.div`
   padding: 20px;
@@ -58,7 +58,7 @@ const AddPresenter = ({
 }) => (
   <Container>
     <Helmet>
-      <title>Search | NomadStore</title>
+      <title>Add books | SSReads</title>
     </Helmet>
     <Form onSubmit={handleSubmit} className="mobileShow">
       <SearchDiv>
@@ -78,20 +78,25 @@ const AddPresenter = ({
       </div>
     </Form>
     {loading ? (
-      <Loader />
+      <>
+        <Helmet>
+          <title>Loading | SSReads</title>
+        </Helmet>
+        <Loader />
+      </>
       ) : (
       <>
         {appResults && appResults.length > 0 && (
           <Section title={"검색결과"}>
             {appResults.map(movie => (
-              <Poster
-              key={movie.item.isbn}
-              isbn={movie.item.isbn}
-              name={movie.item.title}
-              bookImage={movie.item.bookImageURL}
-              author={movie.item.author}
-              publisher={movie.item.publisher}
-              pub_year={movie.item.pub_year}
+              <KakaoPoster
+              key={movie.isbn}
+              isbn={movie.isbn}
+              name={movie.title}
+              bookImage={movie.bookImageURL}
+              author={movie.author}
+              publisher={movie.publisher}
+              pub_year={movie.pub_year}
             />
             ))}
           </Section>

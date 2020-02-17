@@ -52,7 +52,9 @@ const ItemContainer = styled.div`
   margin: 20px 0;
 `;
 
-const Item = styled.span``;
+const Item = styled.span`
+  font-size: 18px;
+`;
 
 const Divider = styled.span`
   margin: 0 10px;
@@ -67,13 +69,14 @@ const Overview = styled.p`
 
 const DesContainer = styled.div`
   margin: 20px 0;
+  font-size: 16px;
 `;
 
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
     <>
       <Helmet>
-        <title>Loading | Nomflix</title>
+        <title>Loading | SSReads</title>
       </Helmet>
       <Loader />
     </>
@@ -81,7 +84,7 @@ const DetailPresenter = ({ result, loading, error }) =>
     <Container>
       <Helmet>
         <title>
-          {result.title} | Nomflix
+          {result.title} | SSReads
         </title>
       </Helmet>
       <Content>
@@ -103,6 +106,10 @@ const DetailPresenter = ({ result, loading, error }) =>
             <Divider>•</Divider>
             <Item>
               {result.publisher}
+            </Item>
+            <Divider>•</Divider>
+            <Item>
+              {result.isbn}
             </Item>
           </ItemContainer>
           <DesContainer>
