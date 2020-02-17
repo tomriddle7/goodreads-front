@@ -40,17 +40,13 @@ export default class extends React.Component {
     }
   };
 
+  componentDidMount() {
+    this.logoutTerm();
+  }
+
   render() {
-    const { email, password, loading, error } = this.state;
     return (
-      <LogoutPresenter
-        email={email}
-        password={password}
-        loading={loading}
-        error={error}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-      />
+      <LogoutPresenter/>
     );
   }
 }

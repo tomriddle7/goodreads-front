@@ -36,32 +36,34 @@ const SLink = styled(Link)`
   justify-content: center;
 `;
 
-const Authenticated = window.sessionStorage.getItem('authenticated');
-
-export default withRouter(({ location: { pathname } }) => (
-  <Header>
-    <List>
-      <Item current={pathname === "/"}>
-        <SLink to="/">Home</SLink>
-      </Item>
-      <Item current={pathname === "/search"}>
-        <SLink to="/search">Search</SLink>
-      </Item>
-      <Item current={pathname === "/add"}>
-        <SLink to="/add">Add</SLink>
-      </Item>
-      {Authenticated ? (
-        <Item current={pathname === "/logout"}>
-        <SLink to="/logout">Logout</SLink>
-      </Item>
-      ) : (
-        <Item current={pathname === "/login"}>
-        <SLink to="/login">Login</SLink>
-      </Item>
-      )}
-      <Item current={pathname === "/signup"}>
-      <SLink to="/signup">Signup</SLink>
-    </Item>
-    </List>
-  </Header>
-));
+export default withRouter(({ location: { pathname } }) => {
+  const Authenticated = window.sessionStorage.getItem("authenticated");
+  console.log(Authenticated === "true");
+  return (
+    <Header>
+      <List>
+        <Item current={pathname === "/"}>
+          <SLink to="/">Home</SLink>
+        </Item>
+        <Item current={pathname === "/search"}>
+          <SLink to="/search">Search</SLink>
+        </Item>
+        <Item current={pathname === "/add"}>
+          <SLink to="/add">Add</SLink>
+        </Item>
+        {Authenticated === "true" ? (
+          <Item current={pathname === "/logout"}>
+            <SLink to="/logout">Logout</SLink>
+          </Item>
+        ) : (
+          <Item current={pathname === "/login"}>
+            <SLink to="/login">Login</SLink>
+          </Item>
+        )}
+        <Item current={pathname === "/signup"}>
+          <SLink to="/signup">Signup</SLink>
+        </Item>
+      </List>
+    </Header>
+  );
+});
