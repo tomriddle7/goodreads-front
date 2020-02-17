@@ -60,7 +60,7 @@ const SearchPresenters = ({
     <Helmet>
       <title>Search | SSReads</title>
     </Helmet>
-    <Form onSubmit={handleSubmit} className="mobileShow">
+    <Form onSubmit={handleSubmit}>
       <SearchDiv>
         <SearchLens>
           <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

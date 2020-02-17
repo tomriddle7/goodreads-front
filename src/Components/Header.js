@@ -52,9 +52,14 @@ export default withRouter(({ location: { pathname } }) => {
           <SLink to="/add">Add</SLink>
         </Item>
         {Authenticated === "true" ? (
+          <>
           <Item current={pathname === "/logout"}>
             <SLink to="/logout">Logout</SLink>
           </Item>
+          <Item current={pathname === "/shelf"}>
+            <SLink to="/shelf">My Shelf</SLink>
+          </Item>
+        </>
         ) : (
           <>
             <Item current={pathname === "/login"}>

@@ -39,15 +39,15 @@ export const loginApi = {
 };
 
 export const shelfApi = {
-  getMyShelf: () => api.get(`shelves/`, {
+  getMyShelf: (token) => api.get(`shelves/`, {
     headers: {
-      Authorization: token
+      Authorization: `Token ${token}`
     }
   }),
-  getSubscribe: isbn => api.post(`shelves/`, {
+  getSubscribe: (token, isbn) => api.post(`shelves/`, {
     isbn: isbn,
     headers: {
-      Authorization: token
+      Authorization: `Token ${token}`
     }
   })
 };

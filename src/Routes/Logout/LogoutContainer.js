@@ -12,21 +12,6 @@ export default class extends React.Component {
     error: null
   };
 
-  handleChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState(prevstate => {
-      const newState = { ...prevstate };
-      newState[name] = value;
-      return newState;
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    this.logoutTerm();
-  };
-
   logoutTerm = async () => {
     const { email, password } = this.state;
     try {

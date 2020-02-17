@@ -12,6 +12,7 @@ import Add from "../Routes/Add";
 import Login from "../Routes/Login";
 import Logout from "../Routes/Logout";
 import Signup from "../Routes/Signup";
+import Shelf from "../Routes/Shelf";
 import Detail from "../Routes/Detail";
 
 export default () => (
@@ -22,9 +23,10 @@ export default () => (
         <Route path="/" exact component={Book} />
         <Route path="/search" component={Search} />
         <Route path="/Add" component={Add} />
-        <Route path="/login" component={Login} />
+        <Route path="/Login" component={Login} />
         <Route path="/Logout" component={Logout} />
         <Route path="/Signup" component={Signup} />
+        <Route path="/Shelf" component={Shelf} />
         <Route path="/book/:id" exact component={Detail} />
         <Redirect from="*" to="/" />
       </Switch>
