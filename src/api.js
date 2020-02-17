@@ -6,9 +6,9 @@ const api = axios.create({
 
 export const booksApi = {
   getBookList: page => api.get(`books/?page=${page}&format=json`),
-  getInstance: ibsn => api.get(`books/${ibsn}`),
-  addBook: ibsn => api.get(`books/`, {
-    isbn: ibsn
+  getInstance: isbn => api.get(`books/${isbn}`),
+  addBook: isbn => api.get(`books/`, {
+    isbn: isbn
   }),
   getSearchbyKakao: term => api.get(`books/search/?search=${term}`),
   getSearchbyTerm: term => api.get(`books/?term=${term}`),
@@ -36,4 +36,18 @@ export const loginApi = {
         Authorization: token
       }
     }),
+};
+
+export const shelfApi = {
+  getMyShelf: () => api.get(`shelves/`, {
+    headers: {
+      Authorization: token
+    }
+  }),
+  getSubscribe: isbn => api.post(`shelves/`, {
+    isbn: isbn,
+    headers: {
+      Authorization: token
+    }
+  })
 };
