@@ -56,13 +56,16 @@ export default withRouter(({ location: { pathname } }) => {
             <SLink to="/logout">Logout</SLink>
           </Item>
         ) : (
-          <Item current={pathname === "/login"}>
-            <SLink to="/login">Login</SLink>
-          </Item>
+          <>
+            <Item current={pathname === "/login"}>
+              <SLink to="/login">Login</SLink>
+            </Item>
+            <Item current={pathname === "/signup"}>
+              <SLink to="/signup">Signup</SLink>
+            </Item>
+          </>
         )}
-        <Item current={pathname === "/signup"}>
-          <SLink to="/signup">Signup</SLink>
-        </Item>
+        
       </List>
     </Header>
   );
