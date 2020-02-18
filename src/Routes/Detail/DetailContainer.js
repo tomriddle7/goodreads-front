@@ -1,6 +1,6 @@
 import React from "react";
 import DetailPresenter from "./DetailPresenter";
-import { booksApi } from "api";
+import { booksApi, shelfApi } from "api";
 
 export default class extends React.Component {
   constructor(props) {
@@ -14,6 +14,15 @@ export default class extends React.Component {
       loading: true,
     };
   }
+
+  getSubscribe = event => {
+    event.preventDefault();
+    const token = window.sessionStorage.getItem("token");
+    if(token != null) {
+      const resutn = shelfApi.getSubscribe(token, this.state.result.isbn);
+      console.log(resutn);
+    }
+  };
 
   async componentDidMount() {
     const {
@@ -39,6 +48,13 @@ export default class extends React.Component {
 
   render() {
     const { result, error, loading } = this.state;
-    return <DetailPresenter result={result} error={error} loading={loading} />;
+    return (
+      <DetailPresenter
+        result={result}
+        loading={loading}
+        error={error}
+        getSubscribe={this.getSubscribe}
+      />
+    );
   }
 }

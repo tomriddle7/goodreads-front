@@ -72,7 +72,7 @@ const DesContainer = styled.div`
   font-size: 16px;
 `;
 
-const DetailPresenter = ({ result, loading, error }) =>
+const DetailPresenter = ({ result, getSubscribe, loading, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -115,6 +115,7 @@ const DetailPresenter = ({ result, loading, error }) =>
           <DesContainer>
             {result.description}
           </DesContainer>
+          <button onClick={getSubscribe}>구독</button>
         </Data>
       </Content>
     </Container>
@@ -130,6 +131,7 @@ DetailPresenter.propTypes = {
     volume: PropTypes.string.isRequired,
     kdc: PropTypes.string.isRequired
   }).isRequired),
+  getSubscribe: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
