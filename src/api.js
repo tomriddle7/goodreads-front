@@ -45,7 +45,8 @@ export const shelfApi = {
     }
   }),
   getSubscribe: (token, isbn) => api.post(`shelves/`, {
-    isbn: isbn,
+    isbn: isbn
+  }, {
     headers: {
       Authorization: `Token ${token}`
     }

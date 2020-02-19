@@ -18,9 +18,12 @@ export default class extends React.Component {
   getSubscribe = event => {
     event.preventDefault();
     const token = window.sessionStorage.getItem("token");
-    if(token != null) {
-      const resutn = shelfApi.getSubscribe(token, this.state.result.isbn);
-      console.log(resutn);
+    if(token === "null") {
+      console.log("구독하려면 로그인하세요.");
+    }
+    else {
+      const subscribe = shelfApi.getSubscribe(token, this.state.result.isbn);
+      console.log(subscribe);
     }
   };
 
