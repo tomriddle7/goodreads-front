@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
+import Popup from 'Components/Popup';
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -72,7 +73,7 @@ const DesContainer = styled.div`
   font-size: 16px;
 `;
 
-const DetailPresenter = ({ result, getSubscribe, loading, error }) =>
+const DetailPresenter = ({ result, showPopup, getSubscribe, togglePopup, loading, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -118,6 +119,7 @@ const DetailPresenter = ({ result, getSubscribe, loading, error }) =>
           <button onClick={getSubscribe}>구독</button>
         </Data>
       </Content>
+      { showPopup ? <Popup text='구독하려면 로그인하세요.' /> : null }
     </Container>
   );
 

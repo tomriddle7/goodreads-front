@@ -10,20 +10,32 @@ export default class extends React.Component {
     } = props;
     this.state = {
       result: null,
+      showPopup: false,
       error: null,
       loading: true,
     };
   }
+  togglePopup() {
+    this.setState({
+      showPopup: true
+    });
+    window.setTimeout(() => {
+      this.setState({
+        showPopup: false
+      });
+    }, 2000);
+  }
 
   getSubscribe = event => {
     event.preventDefault();
+    const Authenticated = window.sessionStorage.getItem("authenticated");
     const token = window.sessionStorage.getItem("token");
-    if(token === "null") {
-      console.log("구독하려면 로그인하세요.");
-    }
-    else {
+    if(Authenticated === "true") {
       const subscribe = shelfApi.getSubscribe(token, this.state.result.isbn);
       console.log(subscribe);
+    }
+    else {
+      this.togglePopup();
     }
   };
 
@@ -50,13 +62,15 @@ export default class extends React.Component {
   }
 
   render() {
-    const { result, error, loading } = this.state;
+    const { result, showPopup, error, loading } = this.state;
     return (
       <DetailPresenter
         result={result}
+        showPopup={showPopup}
         loading={loading}
         error={error}
         getSubscribe={this.getSubscribe}
+        togglePopup={this.togglePopup}
       />
     );
   }
