@@ -180,6 +180,9 @@ class Header extends Component {
                 <NavLink activeClassName="active" to="/shelf">
                   <li>Shelf</li>
                 </NavLink>
+                <NavLink activeClassName="active" to="/me">
+                  <li>My</li>
+                </NavLink>
             </>
             ) : (
               <>

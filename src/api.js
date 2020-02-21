@@ -52,3 +52,16 @@ export const shelfApi = {
     }
   })
 };
+
+export const meApi = {
+  getMyData: (token) => api.get(`users/me/`, {
+    headers: {
+      Authorization: `Token ${token}`
+    }
+  }),
+  updateMyData: (token, id) => api.put(`users/${id}/`, {
+    headers: {
+      Authorization: `Token ${token}`
+    }
+  }),
+};
