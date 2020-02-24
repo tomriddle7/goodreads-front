@@ -114,7 +114,7 @@ const DetailPresenter = ({ result, showPopup, getSubscribe, togglePopup, loading
             </Item>
           </ItemContainer>
           <DesContainer>
-            {result.description}
+            {result.description.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")}
           </DesContainer>
           <button onClick={getSubscribe}>구독</button>
         </Data>
