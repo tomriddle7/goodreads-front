@@ -1,3 +1,4 @@
 import LoginContainer from "./LoginContainer";
+import { useToken } from 'Contexts/token';
 
-export default LoginContainer;
+export default useToken(LoginContainer);

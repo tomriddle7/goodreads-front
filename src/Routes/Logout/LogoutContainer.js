@@ -15,8 +15,7 @@ export default class extends React.Component {
   logoutTerm = async () => {
     const { email, password } = this.state;
     try {
-        window.sessionStorage.setItem('token', null);
-        window.sessionStorage.setItem('authenticated', false);
+        this.props.setValue(this.state.token);
         this.props.history.push('/');
     } catch {
       this.setState({ error: "Can't find results." });

@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { TokenConsumer } from '../Contexts/token';
 
 const Navigation = styled.header`
   width: 100%;
@@ -151,52 +152,56 @@ class Header extends Component {
   }
   render() {
     const { isExpanded } = this.state;
-    const Authenticated = window.sessionStorage.getItem("authenticated");
-    console.log(Authenticated === "true");
     return (
-      <Navigation>
-      <div className="logo">
-        <Link to="/">
-          <p>GoodReads Clone</p>
-        </Link>
-      </div>
-        <nav className="nav">
-          <FontAwesomeIcon icon={faBars} aria-hidden="true" onClick={e => this.handleToggle(e)} />
-          <ul className={`collapsed ${isExpanded ? "is-expanded" : ""}`}>
-            <NavLink activeClassName="active" to="/">
-              <li>Home</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/search">
-              <li>Search</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/add">
-              <li>Add</li>
-            </NavLink>
-            {Authenticated === "true" ? (
-              <>
-                <NavLink activeClassName="active" to="/logout">
-                  <li>Logout</li>
-                </NavLink>
-                <NavLink activeClassName="active" to="/shelf">
-                  <li>Shelf</li>
-                </NavLink>
-                <NavLink activeClassName="active" to="/me">
-                  <li>My</li>
-                </NavLink>
-            </>
-            ) : (
-              <>
-                <NavLink activeClassName="active" to="/login">
-                  <li>Login</li>
-                </NavLink>
-                <NavLink activeClassName="active" to="/signup">
-                  <li>Signup</li>
-                </NavLink>
+      <TokenConsumer>
+        {
+          (token) => (
+            <Navigation>
+          <div className="logo">
+            <Link to="/">
+              <p>GoodReads Clone</p>
+            </Link>
+          </div>
+          <nav className="nav">
+            <FontAwesomeIcon icon={faBars} aria-hidden="true" onClick={e => this.  handleToggle(e)} />
+            <ul className={`collapsed ${isExpanded ? "is-expanded" : ""}`}>
+              <NavLink activeClassName="active" to="/">
+                <li>Home</li>
+              </NavLink>
+              <NavLink activeClassName="active" to="/search">
+                <li>Search</li>
+              </NavLink>
+              <NavLink activeClassName="active" to="/add">
+                <li>Add</li>
+              </NavLink>
+              {token.state.value != null ? (
+                <>
+                  <NavLink activeClassName="active" to="/logout">
+                    <li>Logout</li>
+                  </NavLink>
+                  <NavLink activeClassName="active" to="/shelf">
+                    <li>Shelf</li>
+                  </NavLink>
+                  <NavLink activeClassName="active" to="/me">
+                    <li>My</li>
+                  </NavLink>
               </>
-            )}
-          </ul>
-        </nav>
-      </Navigation>
+              ) : (
+                <>
+                  <NavLink activeClassName="active" to="/login">
+                    <li>Login</li>
+                  </NavLink>
+                  <NavLink activeClassName="active" to="/signup">
+                    <li>Signup</li>
+                  </NavLink>
+                </>
+              )}
+            </ul>
+          </nav>
+        </Navigation>
+          )
+        }
+      </TokenConsumer>
     );
   }
 }
