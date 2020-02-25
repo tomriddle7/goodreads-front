@@ -31,12 +31,11 @@ const Content = styled.div`
   width: 100%;
   position: relative;
   z-index: 1;
-  height: 100%;
 `;
 
 const Cover = styled.img`
-  width: auto;
-  height: 40%;
+  width: 55%;
+  height: 55%;
   border-radius: 5px;
 `;
 
@@ -120,6 +119,7 @@ const DetailPresenter = ({ result, showPopup, getSubscribe, togglePopup, loading
         </Data>
       </Content>
       { showPopup ? <Popup text='구독하려면 로그인하세요.' /> : null }
+      {result.review}
     </Container>
   );
 
@@ -130,8 +130,7 @@ DetailPresenter.propTypes = {
     author: PropTypes.string.isRequired,
     publisher: PropTypes.string.isRequired,
     pub_year: PropTypes.string.isRequired,
-    volume: PropTypes.string.isRequired,
-    kdc: PropTypes.string.isRequired
+    review: PropTypes.array.isRequired
   }).isRequired),
   getSubscribe: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
