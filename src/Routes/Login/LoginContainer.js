@@ -12,18 +12,6 @@ export default class extends React.Component {
     error: null
   };
 
-  componentDidMount() {
-    // 초기 값 설정
-    this.setState({
-      token: null,
-      tokenResult: null,
-      email: "",
-      password: "",
-      loading: true,
-      error: null
-    })
-  }
-
   handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -56,8 +44,11 @@ export default class extends React.Component {
       console.log(resStatusText);
       if(resStatus === 200 && resStatusText === "OK") {
         //로그인 성공
-        this.props.setValue(this.state.token);
+        window.sessionStorage.setItem('token', token);
+        window.sessionStorage.setItem('authenticated', true);
         this.props.history.push('/');
+        window.location.reload();
+        
       }
     } catch {
       this.setState({ error: "Can't find results." });

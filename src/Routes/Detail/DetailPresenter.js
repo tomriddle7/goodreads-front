@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
+import Review from "Components/Review";
 import Popup from 'Components/Popup';
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import { faThumbsUp as fasThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -72,7 +76,34 @@ const DesContainer = styled.div`
   font-size: 16px;
 `;
 
-const DetailPresenter = ({ result, showPopup, getSubscribe, togglePopup, loading, error }) =>
+const Label = styled.label``;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Input = styled.input`
+  all: unset;
+  width: 70%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+`;
+
+const Submit = styled.input`
+  width: 20%;
+  padding: 12px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+`;
+
+const DetailPresenter = ({ result, review, showPopup, getSubscribe, togglePopup, reviewSubmit, loading, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -111,6 +142,16 @@ const DetailPresenter = ({ result, showPopup, getSubscribe, togglePopup, loading
             <Item>
               {result.isbn}
             </Item>
+            <Divider></Divider>
+            <Item>
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <FontAwesomeIcon icon={fasThumbsUp} />
+              {result.like_count}
+            </Item>
+            <Divider></Divider>
+            <Item>
+              {result.avg_star ? result.avg_star : 0} / 5.0
+            </Item>
           </ItemContainer>
           <DesContainer>
             {result.description.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")}
@@ -119,7 +160,21 @@ const DetailPresenter = ({ result, showPopup, getSubscribe, togglePopup, loading
         </Data>
       </Content>
       { showPopup ? <Popup text='구독하려면 로그인하세요.' /> : null }
-      {result.review}
+      <Form onSubmit={reviewSubmit}>
+        <Label htmlFor="review">리뷰</Label>
+        <Input
+          type="text"
+          name="review"
+          placeholder="review"
+          value={review}
+          required
+        />
+        <Submit type="submit" value="Submit"></Submit>
+      </Form>
+      {result.review_count} 개 리뷰
+      {result.review.map((element, index) => (
+            <Review key={parseInt(index)} id={element.id} created_at={element.created_at} user={element.user} book={element.book} star={element.star} description={element.description} />
+          ))}
     </Container>
   );
 
@@ -130,7 +185,14 @@ DetailPresenter.propTypes = {
     author: PropTypes.string.isRequired,
     publisher: PropTypes.string.isRequired,
     pub_year: PropTypes.string.isRequired,
-    review: PropTypes.array.isRequired
+    review: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      user: PropTypes.string.isRequired,
+      book: PropTypes.string.isRequired,
+      star: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    }).isRequired)
   }).isRequired),
   getSubscribe: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,

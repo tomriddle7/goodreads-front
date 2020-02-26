@@ -1,6 +1,5 @@
 import React from "react";
 import LogoutPresenter from "./LogoutPresenter";
-import { loginApi } from "api";
 
 export default class extends React.Component {
   state = {
@@ -15,8 +14,10 @@ export default class extends React.Component {
   logoutTerm = async () => {
     const { email, password } = this.state;
     try {
-        this.props.setValue(this.state.token);
+        window.sessionStorage.setItem('token', null);
+        window.sessionStorage.setItem('authenticated', false);
         this.props.history.push('/');
+        window.location.reload();
     } catch {
       this.setState({ error: "Can't find results." });
     } finally {

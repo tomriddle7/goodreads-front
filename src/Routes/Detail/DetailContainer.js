@@ -1,9 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import DetailPresenter from "./DetailPresenter";
 import { booksApi, shelfApi } from "api";
-import { TokenConsumer } from 'Contexts/token';
-
-let contextType = TokenConsumer;
 
 export default class extends React.Component {
   constructor(props) {
@@ -31,14 +28,21 @@ export default class extends React.Component {
 
   getSubscribe = event => {
     event.preventDefault();
-    
-    if(contextType.state.value != null) {
-      const subscribe = shelfApi.getSubscribe(contextType.state.value, this.state.result.isbn);
+    const Authenticated = window.sessionStorage.getItem("authenticated");
+    const token = window.sessionStorage.getItem("token");
+    if(Authenticated === "true") {
+      const subscribe = shelfApi.getSubscribe(token, this.state.result.isbn);
+      console.log(subscribe);
     }
-    else {
-      this.togglePopup();
+  }
+
+  reviewSubmit = event => {
+    event.preventDefault();
+    const { email, password } = this.state;
+    if (email !== "" && password !== "") {
+      this.loginTerm();
     }
-  };
+  }
 
   async componentDidMount() {
     const {
