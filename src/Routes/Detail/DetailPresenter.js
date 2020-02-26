@@ -103,7 +103,7 @@ const Submit = styled.input`
   margin-bottom: 16px;
 `;
 
-const DetailPresenter = ({ result, review, showPopup, getSubscribe, togglePopup, reviewSubmit, loading, error }) =>
+const DetailPresenter = ({ result, star, review, showPopup, getSubscribe, onChangeStar, togglePopup, reviewSubmit, loading, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -161,6 +161,17 @@ const DetailPresenter = ({ result, review, showPopup, getSubscribe, togglePopup,
       </Content>
       { showPopup ? <Popup text='구독하려면 로그인하세요.' /> : null }
       <Form onSubmit={reviewSubmit}>
+      <Label>
+          별점:
+          <select value={star} onChange={onChangeStar}>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </Label>
         <Label htmlFor="review">리뷰</Label>
         <Input
           type="text"

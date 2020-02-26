@@ -10,6 +10,8 @@ export default class extends React.Component {
     } = props;
     this.state = {
       result: null,
+      star: 0,
+      review: null,
       showPopup: false,
       error: null,
       loading: true,
@@ -26,6 +28,12 @@ export default class extends React.Component {
     }, 2000);
   }
 
+  onChangeStar(event) {
+    this.setState({
+      star: event.target.value
+    })
+  }
+
   getSubscribe = event => {
     event.preventDefault();
     const Authenticated = window.sessionStorage.getItem("authenticated");
@@ -39,9 +47,7 @@ export default class extends React.Component {
   reviewSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
-    if (email !== "" && password !== "") {
-      this.loginTerm();
-    }
+    console.log(this.state);
   }
 
   async componentDidMount() {
@@ -67,14 +73,18 @@ export default class extends React.Component {
   }
 
   render() {
-    const { result, showPopup, error, loading } = this.state;
+    const { result, star, review, showPopup, error, loading } = this.state;
     return (
       <DetailPresenter
         result={result}
+        star={star}
+        review={review}
         showPopup={showPopup}
         loading={loading}
         error={error}
+        onChangeStar={this.onChangeStar}
         getSubscribe={this.getSubscribe}
+        reviewSubmit={this.reviewSubmit}
         togglePopup={this.togglePopup}
       />
     );
