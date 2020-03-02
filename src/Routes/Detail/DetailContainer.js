@@ -11,7 +11,7 @@ export default class extends React.Component {
     this.state = {
       result: null,
       star: 0,
-      review: null,
+      description: null,
       showPopup: false,
       error: null,
       loading: true,
@@ -46,12 +46,22 @@ export default class extends React.Component {
     }
   }
 
-  reviewSubmit = event => {
+  handleChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState(prevstate => {
+      const newState = { ...prevstate };
+      newState[name] = value;
+      return newState;
+    });
+  };
+
+  handleSubmit = event => {
     event.preventDefault();
-    const { star, review } = this.state;
-    if (star >= 0 && star <= 5 && review !== null && review !== "") {
+    const { star, description } = this.state;
+    if (star >= 0 && star <= 5 && description !== null && description !== "") {
       console.log(this.state);
-      const review = shelfApi.setReview(star, review);
+      const reviewConfirm = shelfApi.setReview(star, description);
     }
   }
 
@@ -89,7 +99,8 @@ export default class extends React.Component {
         error={error}
         onChangeStar={this.onChangeStar}
         getSubscribe={this.getSubscribe}
-        reviewSubmit={this.reviewSubmit}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
         togglePopup={this.togglePopup}
       />
     );

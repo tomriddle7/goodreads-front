@@ -103,7 +103,7 @@ const Submit = styled.input`
   margin-bottom: 16px;
 `;
 
-const DetailPresenter = ({ result, star, review, showPopup, getSubscribe, onChangeStar, togglePopup, reviewSubmit, loading, error }) =>
+const DetailPresenter = ({ result, star, description, showPopup, getSubscribe, onChangeStar, togglePopup, handleChange, handleSubmit, loading, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -160,7 +160,7 @@ const DetailPresenter = ({ result, star, review, showPopup, getSubscribe, onChan
         </Data>
       </Content>
       { showPopup ? <Popup text='구독하려면 로그인하세요.' /> : null }
-      <Form onSubmit={reviewSubmit}>
+      <Form onSubmit={handleSubmit}>
       <Label>
           별점
           <select value={star} onChange={onChangeStar}>
@@ -172,12 +172,13 @@ const DetailPresenter = ({ result, star, review, showPopup, getSubscribe, onChan
             <option value="5">5</option>
           </select>
         </Label>
-        <Label htmlFor="review">리뷰</Label>
+        <Label htmlFor="description">리뷰</Label>
         <Input
           type="text"
-          name="review"
-          placeholder="review"
-          value={review}
+          name="description"
+          placeholder="description"
+          value={description}
+          onChange={handleChange}
           required
         />
         <Submit type="submit" value="Submit"></Submit>
@@ -205,6 +206,9 @@ DetailPresenter.propTypes = {
       description: PropTypes.string.isRequired
     }).isRequired)
   }).isRequired),
+  star: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  showPopup: PropTypes.func.isRequired,
   getSubscribe: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string

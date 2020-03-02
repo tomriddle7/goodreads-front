@@ -52,13 +52,13 @@ export const shelfApi = {
     }
   }),
   setReview: (star, description) => api.post(`reviews/`, {
-    id: window.sessionStorage.getItem("token"),
-    created_ad: Date.now(),
-    user: "바보",
-    book: window.location.href.replace(window.location.origin, ""),
+    book: window.location.href.replace(window.location.origin, "").replace("/book/", ""),
     star: star,
     description: description
-  })
+  }, {
+    headers: {
+    Authorization: `Token ${window.sessionStorage.getItem("token")}`
+  }})
 };
 
 export const meApi = {
