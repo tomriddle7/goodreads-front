@@ -28,10 +28,12 @@ export default class extends React.Component {
     }, 2000);
   }
 
-  onChangeStar(event) {
+  onChangeStar = event => {
+    event.preventDefault();
     this.setState({
       star: event.target.value
-    })
+    });
+    console.log(this.state);
   }
 
   getSubscribe = event => {
@@ -46,8 +48,11 @@ export default class extends React.Component {
 
   reviewSubmit = event => {
     event.preventDefault();
-    const { email, password } = this.state;
-    console.log(this.state);
+    const { star, review } = this.state;
+    if (star >= 0 && star <= 5 && review !== null && review !== "") {
+      console.log(this.state);
+      const review = shelfApi.setReview(star, review);
+    }
   }
 
   async componentDidMount() {

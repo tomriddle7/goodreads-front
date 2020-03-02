@@ -50,6 +50,14 @@ export const shelfApi = {
     headers: {
       Authorization: `Token ${token}`
     }
+  }),
+  setReview: (star, description) => api.post(`reviews/`, {
+    id: window.sessionStorage.getItem("token"),
+    created_ad: Date.now(),
+    user: "바보",
+    book: window.location.href.replace(window.location.origin, ""),
+    star: star,
+    description: description
   })
 };
 

@@ -162,7 +162,7 @@ const DetailPresenter = ({ result, star, review, showPopup, getSubscribe, onChan
       { showPopup ? <Popup text='구독하려면 로그인하세요.' /> : null }
       <Form onSubmit={reviewSubmit}>
       <Label>
-          별점:
+          별점
           <select value={star} onChange={onChangeStar}>
             <option value="0">0</option>
             <option value="1">1</option>
