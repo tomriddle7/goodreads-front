@@ -61,7 +61,31 @@ export default class extends React.Component {
     const { star, description } = this.state;
     if (star >= 0 && star <= 5 && description !== null && description !== "") {
       console.log(this.state);
-      const reviewConfirm = shelfApi.setReview(star, description);
+      this.reviewConfirm(star, description);
+    }
+  }
+
+  async reviewConfirm(star, description) {
+    try {
+      const {
+        data: { id: id,
+                created_at: created_at,
+                user: user,
+                book: book,
+                star: star2,
+                description: description2
+              }
+      } = await shelfApi.setReview(star, description);
+      this.setState(prevstate => {
+        const newState = { ...prevstate };
+        newState["result"]["review"] = [...prevstate["result"]["review"], { id, created_at, user, book, star2, description
+        }];
+        return newState;
+      });
+    } catch {
+      this.setState({ error: "Can't find anything." });
+    } finally {
+      
     }
   }
 
