@@ -107,11 +107,14 @@ export default class extends React.Component {
     let result = null;
     try {
       ({ data: result } = await booksApi.getInstance(parsedId));
+      this.setState({
+        result
+      });
       console.log(result);
     } catch {
       this.setState({ error: "Can't find anything." });
     } finally {
-      this.setState({ loading: false, result });
+      this.setState({ loading: false });
     }
   }
 

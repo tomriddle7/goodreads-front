@@ -73,7 +73,7 @@ const DesContainer = styled.div`
   font-size: 16px;
 `;
 
-const MePresenter = ({ result, showPopup, getSubscribe, togglePopup, loading, error }) =>
+const MePresenter = ({ results, loading, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -85,57 +85,13 @@ const MePresenter = ({ result, showPopup, getSubscribe, togglePopup, loading, er
     <Container>
       <Helmet>
         <title>
-          {result.title} | SSReads
+          My | SSReads
         </title>
       </Helmet>
       <Content>
-        <Cover
-          src={result.bookImage}
-        />
-        <Data>
-          <Title>
-            {result.title}
-          </Title>
-          <ItemContainer>
-            <Item>
-              {result.author}
-            </Item>
-            <Divider>•</Divider>
-            <Item>
-              {result.pub_year}
-            </Item>
-            <Divider>•</Divider>
-            <Item>
-              {result.publisher}
-            </Item>
-            <Divider>•</Divider>
-            <Item>
-              {result.isbn}
-            </Item>
-          </ItemContainer>
-          <DesContainer>
-            {result.description}
-          </DesContainer>
-          <button onClick={getSubscribe}>구독</button>
-        </Data>
+        가입날짜: {}
       </Content>
-      { showPopup ? <Popup text='구독하려면 로그인하세요.' /> : null }
     </Container>
   );
-
-MePresenter.propTypes = {
-  result: PropTypes.arrayOf(PropTypes.shape({
-    isbn: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    publisher: PropTypes.string.isRequired,
-    pub_year: PropTypes.string.isRequired,
-    volume: PropTypes.string.isRequired,
-    kdc: PropTypes.string.isRequired
-  }).isRequired),
-  getSubscribe: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.string
-};
 
 export default MePresenter;

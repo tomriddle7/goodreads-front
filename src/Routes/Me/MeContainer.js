@@ -13,14 +13,12 @@ export default class extends React.Component {
     const token = window.sessionStorage.getItem("token");
     try { 
       if(token != null) {
-        console.log(token);
         const {
           data: results
         } = await meApi.getMyData(token);
         this.setState({
           results
         });
-        console.log(this.state);
       }
     } catch {
       this.setState({ error: "Can't find results." });
