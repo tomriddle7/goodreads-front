@@ -59,9 +59,14 @@ export default class extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { star, description } = this.state;
-    if (star >= 0 && star <= 5 && description !== null && description !== "") {
-      console.log(this.state);
-      const reviewConfirm = shelfApi.setReview(star, description);
+    if(window.sessionStorage.getItem("authenticated")) {
+      if (star >= 0 && star <= 5 && description !== null && description !== "") {
+        console.log(this.state);
+        const reviewConfirm = shelfApi.setReview(star, description);
+      }
+    }
+    else {
+
     }
   }
 

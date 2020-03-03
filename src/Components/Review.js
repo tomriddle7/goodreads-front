@@ -9,24 +9,14 @@ const Container = styled("div")`
   flex-direction: row;
 `;
 
-const Scope80 = styled("div")`
-  width:80vw;
+const Scope = styled("div")`
+  width: ${props => props.widthPer}vw;
   display: flex;
   flex-direction: column;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   padding: 0px 10px;
-`;
-
-const Scope20 = styled("div")`
-  width:20vw;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
 `;
 
 const Image = styled("div")`
@@ -55,12 +45,15 @@ const Genre = styled("span")`
 
 const Review = ({ id, created_at, user, book, star, description }) => (
   <Container>
-    <Scope20>
+    <Scope widthPer={20}>
       <Name>{user}</Name>
-    </Scope20>
-    <Scope80>
+    </Scope>
+    <Scope widthPer={70}>
       <Name>{description}</Name>
-    </Scope80>
+    </Scope>
+    <Scope widthPer={10}>
+      <Name>{star ? star : 0} / 5</Name>
+    </Scope>
   </Container>
     
 );
