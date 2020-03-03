@@ -10,8 +10,8 @@ export default class extends React.Component {
     } = props;
     this.state = {
       result: null,
-      star: 0,
-      description: null,
+      star: 1,
+      description: '',
       showPopup: false,
       error: null,
       loading: true,
@@ -33,7 +33,6 @@ export default class extends React.Component {
     this.setState({
       star: event.target.value
     });
-    console.log(this.state);
   }
 
   getSubscribe = event => {
@@ -59,9 +58,14 @@ export default class extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { star, description } = this.state;
-    if (star >= 0 && star <= 5 && description !== null && description !== "") {
-      console.log(this.state);
-      this.reviewConfirm(star, description);
+    if(window.sessionStorage.getItem("authenticated")) {
+      if (star > 0 && star <= 5 && description !== "") {
+        console.log(this.state);
+        this.reviewConfirm(star, description);
+      }
+    }
+    else {
+
     }
   }
 
@@ -78,13 +82,15 @@ export default class extends React.Component {
       } = await shelfApi.setReview(star, description);
       this.setState(prevstate => {
         const newState = { ...prevstate };
-        newState["result"]["review"] = [...prevstate["result"]["review"], { id, created_at, user, book, star2, description
+        newState["result"]["review"] = [...prevstate["result"]["review"], { id, created_at, user, book, star, description
         }];
         return newState;
       });
     } catch {
       this.setState({ error: "Can't find anything." });
     } finally {
+      this.setState({ star: 1, description: '' });
+    }
   }
 
   async componentDidMount() {
@@ -110,12 +116,12 @@ export default class extends React.Component {
   }
 
   render() {
-    const { result, star, review, showPopup, error, loading } = this.state;
+    const { result, star, description, showPopup, error, loading } = this.state;
     return (
       <DetailPresenter
         result={result}
         star={star}
-        review={review}
+        description={description}
         showPopup={showPopup}
         loading={loading}
         error={error}
