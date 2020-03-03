@@ -51,8 +51,8 @@ export const shelfApi = {
       Authorization: `Token ${token}`
     }
   }),
-  setReview: (star, description) => api.post(`reviews/`, {
-    book: window.location.href.replace(window.location.origin, "").replace("/book/", ""),
+  setReview: (star, description, isbn) => api.post(`reviews/`, {
+    book: isbn,
     star: star,
     description: description
   }, {

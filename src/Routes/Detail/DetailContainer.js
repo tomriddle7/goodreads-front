@@ -57,11 +57,11 @@ export default class extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { star, description } = this.state;
+    const { result, star, description } = this.state;
     if(window.sessionStorage.getItem("authenticated")) {
       if (star > 0 && star <= 5 && description !== "") {
         console.log(this.state);
-        this.reviewConfirm(star, description);
+        this.reviewConfirm(star, description, result.isbn);
       }
     }
     else {
@@ -69,7 +69,7 @@ export default class extends React.Component {
     }
   }
 
-  async reviewConfirm(star, description) {
+  async reviewConfirm(star, description, isbn) {
     try {
       const {
         data: { id: id,
@@ -79,7 +79,7 @@ export default class extends React.Component {
                 star: star2,
                 description: description2
               }
-      } = await shelfApi.setReview(star, description);
+      } = await shelfApi.setReview(star, description, isbn);
       this.setState(prevstate => {
         const newState = { ...prevstate };
         newState["result"]["review"] = [...prevstate["result"]["review"], { id, created_at, user, book, star, description
