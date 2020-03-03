@@ -150,7 +150,7 @@ const DetailPresenter = ({ result, star, description, showPopup, getSubscribe, o
             </Item>
             <Divider></Divider>
             <Item>
-              {result.avg_star ? result.avg_star : 0} / 5.0
+              {result.avg_star ? result.avg_star.toFixed(2) : 0} / 5.0
             </Item>
           </ItemContainer>
           <DesContainer>
@@ -164,7 +164,6 @@ const DetailPresenter = ({ result, star, description, showPopup, getSubscribe, o
       <Label>
           별점
           <select value={star} onChange={onChangeStar}>
-            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
