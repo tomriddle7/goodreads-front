@@ -5,7 +5,7 @@ import { meApi } from "api";
 export default class extends React.Component {
   state = {
     results: null,
-    loading: false,
+    loading: true,
     error: null
   };
   

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
-import Popup from 'Components/Popup';
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -89,9 +88,46 @@ const MePresenter = ({ results, loading, error }) =>
         </title>
       </Helmet>
       <Content>
-        가입날짜: {}
+        가입날짜: {results.created_at}
+        닉네임: {results.nickname}
       </Content>
     </Container>
   );
+
+  MePresenter.propTypes = {
+    results: PropTypes.arrayOf(PropTypes.shape({
+    created_at: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    nickname: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    mybook: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      book: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        created_at: PropTypes.string.isRequired,
+        auther: PropTypes.string.isRequired,
+        bookImage: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        isbn: PropTypes.string.isRequired,
+        like_count: PropTypes.string.isRequired,
+        num_views: PropTypes.string.isRequired,
+        pub_year: PropTypes.string.isRequired,
+        review_count: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+    }).isRequired),
+    }).isRequired),
+    review: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      star: PropTypes.string.isRequired,
+      user: PropTypes.string.isRequired,
+      book: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    }).isRequired)
+  }).isRequired),
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.string
+  };
 
 export default MePresenter;
