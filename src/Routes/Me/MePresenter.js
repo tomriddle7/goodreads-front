@@ -29,49 +29,11 @@ const Backdrop = styled.div`
 
 const Content = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   position: relative;
   z-index: 1;
   height: 100%;
-`;
-
-const Cover = styled.img`
-  width: auto;
-  height: 40%;
-  border-radius: 5px;
-`;
-
-const Data = styled.div`
-  width: 70%;
-  margin-left: 10px;
-`;
-
-const Title = styled.h3`
-  font-size: 32px;
-`;
-
-const ItemContainer = styled.div`
-  margin: 20px 0;
-`;
-
-const Item = styled.span`
-  font-size: 18px;
-`;
-
-const Divider = styled.span`
-  margin: 0 10px;
-`;
-
-const Overview = styled.p`
-  font-size: 12px;
-  opacity: 0.7;
-  line-height: 1.5;
-  width: 50%;
-`;
-
-const DesContainer = styled.div`
-  margin: 20px 0;
-  font-size: 16px;
 `;
 
 const MePresenter = ({ results, loading, error }) =>
@@ -110,17 +72,9 @@ const MePresenter = ({ results, loading, error }) =>
       </Content>
       <Content>
         나의 리뷰
-        {results.review.map(p => (
-          <Review
-            key={p.book.id}
-            id={p.book.id}
-            created_at={p.book.created_at}
-            user={p.book.user}
-            book={p.book.book}
-            star={p.book.star}
-            description={p.book.description}
-          />
-        ))}
+        {results.review.map((element, index) => (
+            <Review key={parseInt(index)} id={element.id} created_at={element.created_at} user={element.user} book={element.book} star={element.star} description={element.description} />
+          ))}
       </Content>
     </Container>
   );
@@ -146,7 +100,7 @@ const MePresenter = ({ results, loading, error }) =>
         pub_year: PropTypes.string.isRequired,
         review_count: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-    }).isRequired),
+      }).isRequired),
     }).isRequired),
     review: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
