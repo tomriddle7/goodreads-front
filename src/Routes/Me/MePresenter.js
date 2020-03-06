@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
+import Poster from "../../Components/Poster";
+import Review from "../../Components/Review";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -89,7 +91,36 @@ const MePresenter = ({ results, loading, error }) =>
       </Helmet>
       <Content>
         가입날짜: {results.created_at}
+        아이디: {results.username}
         닉네임: {results.nickname}
+      </Content>
+      <Content>
+        나의 책
+        {results.mybook.map(p => (
+          <Poster
+            key={p.book.id}
+            isbn={p.book.isbn}
+            name={p.book.title}
+            bookImage={p.book.bookImage}
+            author={p.book.author}
+            publisher={p.book.publisher}
+            pub_year={p.book.pub_year}
+          />
+        ))}
+      </Content>
+      <Content>
+        나의 리뷰
+        {results.review.map(p => (
+          <Review
+            key={p.book.id}
+            id={p.book.id}
+            created_at={p.book.created_at}
+            user={p.book.user}
+            book={p.book.book}
+            star={p.book.star}
+            description={p.book.description}
+          />
+        ))}
       </Content>
     </Container>
   );
