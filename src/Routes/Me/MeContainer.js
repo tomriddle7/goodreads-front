@@ -5,9 +5,15 @@ import { meApi } from "api";
 export default class extends React.Component {
   state = {
     results: null,
+    toggleValue: "days",
     loading: true,
     error: null
   };
+
+  toggleState = value => {
+    this.setState({toggleValue: value});
+    console.log(this.state);
+  }
   
   async componentDidMount() {
     const token = window.sessionStorage.getItem("token");
@@ -28,10 +34,12 @@ export default class extends React.Component {
   }
 
   render() {
-    const { results, error, loading } = this.state;
+    const { results, toggleValue, error, loading } = this.state;
     return (
       <MePresenter
         results={results}
+        toggleValue={toggleValue}
+        toggleState={this.toggleState}
         error={error}
         loading={loading}
       />
