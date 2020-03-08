@@ -8,10 +8,10 @@ import Loader from "Components/Loader";
 import ToggleSwitch from "Components/ToggleSwitch";
 
 const Container = styled.div`
-  height: calc(100vh - 50px);
+  height: 100vh;
   width: 100%;
   position: relative;
-  padding: 50px;
+  padding: 20px;
 `;
 
 const Backdrop = styled.div`
@@ -47,18 +47,21 @@ const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
     </>
   ) : (
     <Container>
-      <ToggleSwitch values={['days', 'weeks', 'months']} selected="days" handleChange={toggleState}/>
+      <ToggleSwitch values={['info', 'mybook', 'review']} selected="info" handleChange={toggleState}/>
       <Helmet>
         <title>
           My | SSReads
         </title>
       </Helmet>
-      <Content>
+      {results && toggleValue ==='info' && (
+        <Content>
         가입날짜: {results.created_at}
         아이디: {results.username}
         닉네임: {results.nickname}
-      </Content>
-      <Content>
+        </Content>
+      )}
+      {results && results.mybook && results.mybook.length > 0 && toggleValue ==='mybook' && (
+        <Content>
         나의 책
         {results.mybook.map(p => (
           <Poster
@@ -72,12 +75,15 @@ const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
           />
         ))}
       </Content>
-      <Content>
+      )}
+      {results && results.review && results.review.length > 0 && toggleValue ==='review' && (
+        <Content>
         나의 리뷰
         {results.review.map((element, index) => (
             <Review key={parseInt(index)} id={element.id} created_at={element.created_at} user={element.user} book={element.book} star={element.star} description={element.description} />
           ))}
       </Content>
+      )}
     </Container>
   );
 

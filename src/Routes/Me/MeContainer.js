@@ -5,14 +5,13 @@ import { meApi } from "api";
 export default class extends React.Component {
   state = {
     results: null,
-    toggleValue: "days",
+    toggleValue: "info",
     loading: true,
     error: null
   };
 
   toggleState = value => {
     this.setState({toggleValue: value});
-    console.log(this.state);
   }
   
   async componentDidMount() {

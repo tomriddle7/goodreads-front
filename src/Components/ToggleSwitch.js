@@ -5,13 +5,18 @@ import styled from 'styled-components';
 /*
 Toggle Switch Component
 https://codesandbox.io/s/w7rwn53eo
-Usage: <ToggleSwitch id="id" onChange={function (e) { console.log("Checkbox Current State: " + e.target.checked); }} />
+Usage: <ToggleSwitch values={['days', 'weeks', 'years']} selected="days" handleChange={function (value) { this.setState({toggleValue: value}); }}/>
 */
+
+const toggleSetting = {
+    width: 99,
+    height: 26
+};
 
 export const Switch = styled.div`
   position: relative;
-  height: 26px;
-  width: 135px;
+  height: ${toggleSetting.height}px;
+  width: ${toggleSetting.width}%;
   background-color: #e4e4e4;
   border-radius: 3px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
@@ -27,8 +32,8 @@ export const SwitchSelection = styled.span`
   z-index: 1;
   top: 0px;
   left: 0px;
-  width: 45px;
-  height: 26px;
+  width: ${toggleSetting.width / 3}%;
+  height: ${toggleSetting.height}px;
   background: #216BA5;
   border-radius: 3px;
   transition: left 0.25s ease-out;
@@ -38,8 +43,8 @@ export const SwitchLabel = styled.label`
   position: relative;
   z-index: 2;
   float: left;
-  width: 45px;
-  line-height: 26px;
+  width: ${toggleSetting.width / 3}%;
+  line-height: ${toggleSetting.height}px;
   font-size: 11px;
   color: rgba(0, 0, 0, 0.6);
   text-align: center;

@@ -10,10 +10,10 @@ import { faThumbsUp as fasThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
-  height: calc(100vh - 50px);
+  height: 100vh;
   width: 100%;
   position: relative;
-  padding: 50px;
+  padding: 20px;
 `;
 
 const Backdrop = styled.div`
