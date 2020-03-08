@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
+import Poster from "../../Components/Poster";
+import Review from "../../Components/Review";
 import Loader from "Components/Loader";
 import ToggleSwitch from "Components/ToggleSwitch";
 
@@ -28,49 +30,11 @@ const Backdrop = styled.div`
 
 const Content = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   position: relative;
   z-index: 1;
   height: 100%;
-`;
-
-const Cover = styled.img`
-  width: auto;
-  height: 40%;
-  border-radius: 5px;
-`;
-
-const Data = styled.div`
-  width: 70%;
-  margin-left: 10px;
-`;
-
-const Title = styled.h3`
-  font-size: 32px;
-`;
-
-const ItemContainer = styled.div`
-  margin: 20px 0;
-`;
-
-const Item = styled.span`
-  font-size: 18px;
-`;
-
-const Divider = styled.span`
-  margin: 0 10px;
-`;
-
-const Overview = styled.p`
-  font-size: 12px;
-  opacity: 0.7;
-  line-height: 1.5;
-  width: 50%;
-`;
-
-const DesContainer = styled.div`
-  margin: 20px 0;
-  font-size: 16px;
 `;
 
 const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
@@ -91,7 +55,28 @@ const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
       </Helmet>
       <Content>
         가입날짜: {results.created_at}
+        아이디: {results.username}
         닉네임: {results.nickname}
+      </Content>
+      <Content>
+        나의 책
+        {results.mybook.map(p => (
+          <Poster
+            key={p.book.id}
+            isbn={p.book.isbn}
+            name={p.book.title}
+            bookImage={p.book.bookImage}
+            author={p.book.author}
+            publisher={p.book.publisher}
+            pub_year={p.book.pub_year}
+          />
+        ))}
+      </Content>
+      <Content>
+        나의 리뷰
+        {results.review.map((element, index) => (
+            <Review key={parseInt(index)} id={element.id} created_at={element.created_at} user={element.user} book={element.book} star={element.star} description={element.description} />
+          ))}
       </Content>
     </Container>
   );
@@ -117,7 +102,7 @@ const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
         pub_year: PropTypes.string.isRequired,
         review_count: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-    }).isRequired),
+      }).isRequired),
     }).isRequired),
     review: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,

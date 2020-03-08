@@ -55,7 +55,6 @@ const Review = ({ id, created_at, user, book, star, description }) => (
       <Name>{star ? star : 0} / 5</Name>
     </Scope>
   </Container>
-    
 );
 
 Review.propTypes = {
