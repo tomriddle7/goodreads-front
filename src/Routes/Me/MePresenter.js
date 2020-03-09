@@ -14,20 +14,6 @@ const Container = styled.div`
   padding: 20px;
 `;
 
-const Backdrop = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${props => props.bgImage});
-  background-position: center center;
-  background-size: cover;
-  filter: blur(3px);
-  opacity: 0.5;
-  z-index: 0;
-`;
-
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,6 +21,23 @@ const Content = styled.div`
   position: relative;
   z-index: 1;
   height: 100%;
+`;
+
+const Section = styled.div`
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 125px);
+  grid-gap: 25px;
+`;
+
+const ContentTitle = styled.div`
+  font-size: 22px;
+  padding: 6px;
+`;
+
+const Info = styled.div`
+  font-size: 20px;
+  padding: 4px;
 `;
 
 const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
@@ -55,31 +58,34 @@ const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
       </Helmet>
       {results && toggleValue ==='info' && (
         <Content>
-        가입날짜: {results.created_at}
-        아이디: {results.username}
-        닉네임: {results.nickname}
+          <Info>가입날짜: {results.created_at}</Info>
+          <Info>이메일: {results.username}</Info>
+          <Info>닉네임: {results.nickname}</Info>
         </Content>
       )}
       {results && results.mybook && results.mybook.length > 0 && toggleValue ==='mybook' && (
         <Content>
-        나의 책
-        {results.mybook.map(p => (
-          <Poster
-            key={p.book.id}
-            isbn={p.book.isbn}
-            name={p.book.title}
-            bookImage={p.book.bookImage}
-            author={p.book.author}
-            publisher={p.book.publisher}
-            pub_year={p.book.pub_year}
-          />
-        ))}
-      </Content>
+          <ContentTitle>나의 구독</ContentTitle>
+          <Section>
+            {results.mybook.map(p => (
+            <Poster
+                key={p.book.id}
+                isbn={p.book.isbn}
+                name={p.book.title}
+                bookImage={p.book.bookImage}
+                author={p.book.author}
+                publisher={p.book.publisher}
+                pub_year={p.book.pub_year}
+              />
+            ))}
+          </Section>
+        </Content>
+        
       )}
       {results && results.review && results.review.length > 0 && toggleValue ==='review' && (
         <Content>
-        나의 리뷰
-        {results.review.map((element, index) => (
+          <ContentTitle>나의 리뷰</ContentTitle>
+          {results.review.map((element, index) => (
             <Review key={parseInt(index)} id={element.id} created_at={element.created_at} user={element.user} book={element.book} star={element.star} description={element.description} />
           ))}
       </Content>
