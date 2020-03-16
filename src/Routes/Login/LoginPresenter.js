@@ -15,23 +15,21 @@ const Input = styled.input`
   all: unset;
   width: 100%;
   padding: 12px;
-  border: 0px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
-  background: #2a2a2d;
 `;
 
 const Submit = styled.input`
   width: 100%;
   padding: 12px;
-  border: 0px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
-  background-color: #1c1c1e;
   color: #0b84fe;
 `;
 

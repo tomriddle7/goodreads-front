@@ -22,8 +22,10 @@ const Form = styled.form`
   height: 50px;
   display: flex;
   flex-direction: row;
-  background-color: #2a2a2d;
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 `;
 
 const SearchDiv = styled.div`
