@@ -13,6 +13,9 @@ export default class extends React.Component {
   toggleState = value => {
     this.setState({toggleValue: value});
   }
+  Setinfo = () => {
+    window.location = window.location.origin + `/Setinfo`;
+  }
   
   async componentDidMount() {
     const token = window.sessionStorage.getItem("token");
@@ -39,6 +42,7 @@ export default class extends React.Component {
         results={results}
         toggleValue={toggleValue}
         toggleState={this.toggleState}
+        Setinfo={this.Setinfo}
         error={error}
         loading={loading}
       />

@@ -14,6 +14,7 @@ import Logout from "../Routes/Logout";
 import Signup from "../Routes/Signup";
 import Shelf from "../Routes/Shelf";
 import Me from "../Routes/Me";
+import Setinfo from "../Routes/Setinfo";
 import Detail from "../Routes/Detail";
 
 export default () => (
@@ -29,6 +30,7 @@ export default () => (
         <Route path="/Signup" component={Signup} />
         <Route path="/Shelf" component={Shelf} />
         <Route path="/Me" component={Me} />
+        <Route path="/Setinfo" component={Setinfo} />
         <Route path="/book/:id" exact component={Detail} />
         <Redirect from="*" to="/" />
       </Switch>

@@ -40,7 +40,12 @@ const Info = styled.div`
   padding: 4px;
 `;
 
-const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
+const SetinfoButton = styled("a")`
+  cursor: pointer;
+  text-align: center;
+`;
+
+const MePresenter = ({ results, toggleValue, toggleState, Setinfo, loading, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -61,6 +66,7 @@ const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
           <Info>가입날짜: {results.created_at}</Info>
           <Info>이메일: {results.username}</Info>
           <Info>닉네임: {results.nickname}</Info>
+          <SetinfoButton onClick={Setinfo}>정보수정</SetinfoButton>
         </Content>
       )}
       {results && results.mybook && results.mybook.length > 0 && toggleValue ==='mybook' && (
