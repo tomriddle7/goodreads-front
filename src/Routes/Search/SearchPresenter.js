@@ -12,7 +12,7 @@ const Container = styled.div`
 const Section = styled.div`
   margin-top: 25px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 125px);
+  grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
   grid-gap: 25px;
 `;
 
@@ -22,8 +22,10 @@ const Form = styled.form`
   height: 50px;
   display: flex;
   flex-direction: row;
-  background-color: #2a2a2d;
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 `;
 
 const SearchDiv = styled.div`

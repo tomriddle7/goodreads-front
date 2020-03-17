@@ -1,14 +1,19 @@
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
+import { debounce } from 'lodash';
 import { booksApi } from "api";
 
 export default class extends React.Component {
-  state = {
-    appResults: null,
-    searchTerm: "",
-    loading: false,
-    error: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      appResults: null,
+      searchTerm: "",
+      loading: false,
+      error: null
+    };
+    this.goSearch = debounce(this.goSearch, 250);
+  }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -22,7 +27,6 @@ export default class extends React.Component {
     this.setState({
       searchTerm: value
     });
-    console.log(value);
     this.goSearch();
   };
 
