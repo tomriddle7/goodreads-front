@@ -165,9 +165,6 @@ class Header extends Component {
         <nav className="nav">
           <FontAwesomeIcon icon={faBars} aria-hidden="true" onClick={e => this.handleToggle(e)} />
           <ul className={`collapsed ${isExpanded ? "is-expanded" : ""}`}>
-            <NavLink activeClassName="active" to="/">
-              <li>Home</li>
-            </NavLink>
             <NavLink activeClassName="active" to="/search">
               <li>Search</li>
             </NavLink>

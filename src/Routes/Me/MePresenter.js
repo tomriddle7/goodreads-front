@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Poster from "../../Components/Poster";
@@ -40,12 +41,20 @@ const Info = styled.div`
   padding: 4px;
 `;
 
-const SetinfoButton = styled("a")`
+const SetinfoButton = styled("div")`
   cursor: pointer;
   text-align: center;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  color: #0b84fe;
 `;
 
-const MePresenter = ({ results, toggleValue, toggleState, Setinfo, loading, error }) =>
+const MePresenter = ({ results, toggleValue, toggleState, loading, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -66,7 +75,9 @@ const MePresenter = ({ results, toggleValue, toggleState, Setinfo, loading, erro
           <Info>가입날짜: {results.created_at}</Info>
           <Info>이메일: {results.username}</Info>
           <Info>닉네임: {results.nickname}</Info>
-          <SetinfoButton onClick={Setinfo}>정보수정</SetinfoButton>
+          <Link to={`/Setinfo`}>
+            <SetinfoButton>정보수정</SetinfoButton>
+          </Link>
         </Content>
       )}
       {results && results.mybook && results.mybook.length > 0 && toggleValue ==='mybook' && (

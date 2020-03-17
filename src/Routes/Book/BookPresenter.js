@@ -12,7 +12,7 @@ const Container = styled.div`
 const Section = styled.div`
   margin-top: 25px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 125px);
+  grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
   grid-gap: 25px;
 `;
 

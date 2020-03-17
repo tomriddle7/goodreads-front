@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   font-size: 12px;
+  line-height: 20px;
 `;
 
 const Image = styled.div`
@@ -33,11 +34,13 @@ const ImageContainer = styled.div`
 const Title = styled.span`
   display: block;
   margin-bottom: 3px;
+  font-size: 14px;
+  line-height: 14px;
 `;
 
 const Year = styled.span`
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
 `;
 
 const Poster = ({ isbn, name, bookImage, author, publisher, pub_year }) => (

@@ -34,7 +34,7 @@ export const SwitchSelection = styled.span`
   left: 0px;
   width: ${toggleSetting.width / 3}%;
   height: ${toggleSetting.height}px;
-  background: #216BA5;
+  background: #fab1a0;
   border-radius: 3px;
   transition: left 0.25s ease-out;
 `;
