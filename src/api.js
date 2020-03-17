@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://hackathon.hopto.org/api/v1/"
+  baseURL: "https://cors-anywhere.herokuapp.com/http://hackathon.hopto.org/api/v1/"
 });
 
 export const booksApi = {
