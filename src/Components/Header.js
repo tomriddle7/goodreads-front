@@ -4,16 +4,20 @@ import styled from "styled-components";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const bgColor = "#ff7675";
+const fontColor = "#fff";
+const lineColor = "#fff";
+
 const Navigation = styled.header`
   width: 100%;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid ${lineColor};
   z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   margin-bottom: 60px;
-  background: #f8f8f8;
+  background: ${bgColor};
 
   .logo a {
     padding-top: 33px;
@@ -32,10 +36,9 @@ const Navigation = styled.header`
     color: #ccc;
   }
   a {
-    color: #222;
+    color: ${fontColor};
     opacity: 0.55;
     transition: all 0.6s;
-    color: #222;
     font-size: 2.4em;
   }
   a:hover {
@@ -43,7 +46,7 @@ const Navigation = styled.header`
   }
   .fa-bars {
     display: none;
-    color: #222;
+    color: ${fontColor};
     font-size: 2rem;
   }
   nav {
@@ -64,7 +67,7 @@ const Navigation = styled.header`
       }
     }
     a.active {
-      color: #222;
+      color: ${fontColor};
     }
   }
 
