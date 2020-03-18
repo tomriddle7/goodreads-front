@@ -10,6 +10,8 @@ export default class extends React.Component {
       page: 1,
       next: null,
       bookList: [],
+      onLoadMore: false,
+      hasMore: true,
       error: null,
       loading: true
     };
@@ -24,6 +26,12 @@ export default class extends React.Component {
   }
 
   addBookList = (async () => {
+    if (this.state.onLoadMore || !this.state.hasMore) {
+      return;
+    }
+    this.setState({
+      onLoadMore: true
+    });
     const {
       data: { next: next, results: bookList },
       status: resStatus
@@ -34,7 +42,13 @@ export default class extends React.Component {
         newState["page"] = prevstate["page"] + 1;
         newState["next"] = next;
         newState["bookList"] = [...prevstate["bookList"], ...bookList];
+        newState["onLoadMore"] = false;
         return newState;
+      });
+    }
+    else {
+      this.setState({
+        hasMore: false
       });
     }
   });
