@@ -16,16 +16,7 @@ const Section = styled.div`
   grid-gap: 25px;
 `;
 
-const BackButton = styled("a")`
-  cursor: pointer;
-  background: #00000000;
-  font-size: 16px;
-  color: #0b84fe;
-  font-weight: bold;
-  text-align: center;
-`;
-
-const BookPresenter = ({ next, bookList, addBookList, loading, error }) => (
+const BookPresenter = ({ next, bookList, loading, error }) => (
   <>
     <Helmet>
       <title>Books | SSReads</title>
@@ -57,11 +48,6 @@ const BookPresenter = ({ next, bookList, addBookList, loading, error }) => (
             ))}
           </Section>
         )}
-        {next ? (
-        <BackButton onClick={addBookList}>See more</BackButton>
-      ) : (
-        <></>
-      )}
         {/*{error && <Message color="#e74c3c" text={error} />}*/}
       </Container>
     )}

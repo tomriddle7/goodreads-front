@@ -1,15 +1,27 @@
 import React from "react";
 import BookPresenter from "./BookPresenter";
+import { throttle } from "lodash";
 import { booksApi } from "api";
 
 export default class extends React.Component {
-  state = {
-    page: 1,
-    next: null,
-    bookList: [],
-    error: null,
-    loading: true
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 1,
+      next: null,
+      bookList: [],
+      error: null,
+      loading: true
+    };
+    this.onScroll = throttle(this.onScroll, 500);
+  }
+
+  onScroll() {
+    let nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+    if (!this.props.fetching && nearBottom) {
+      this.addBookList();
+    }
+  }
 
   addBookList = (async () => {
     const {
@@ -38,7 +50,12 @@ export default class extends React.Component {
       this.setState({
         loading: false
       });
+      window.addEventListener("scroll", this.onScroll.bind(this), false);
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll.bind(this), false);
   }
 
   render() {
@@ -47,7 +64,6 @@ export default class extends React.Component {
       <BookPresenter
         next={next}
         bookList={bookList}
-        addBookList={this.addBookList}
         error={error}
         loading={loading}
       />
