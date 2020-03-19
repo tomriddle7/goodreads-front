@@ -57,6 +57,13 @@ export default class extends React.Component {
     }
   };
 
+  kakaoSuccess = result => {
+    window.sessionStorage.setItem('token', result.response.access_token);
+    window.sessionStorage.setItem('authenticated', true);
+    this.props.history.push('/');
+    window.location.reload();
+  }
+
   render() {
     const { email, password, loading, error } = this.state;
     return (
@@ -67,6 +74,7 @@ export default class extends React.Component {
         error={error}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        kakaoSuccess={this.kakaoSuccess}
       />
     );
   }

@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
+import KakaoLogin from 'react-kakao-login';
+
+const appKey = process.env.REACT_APP_KEY;
 
 const Container = styled.div`
   padding: 20px;
@@ -33,13 +36,18 @@ const Submit = styled.input`
   color: #0b84fe;
 `;
 
-const Social = styled.a``;
-
-const KaKaoImg = styled.img`
-  display: inline;
-  width: auto;
-  height: 100%;
-  margin: 0px 5px;
+const StyledKakaoLogin = styled(KakaoLogin)`
+  display: inline-block;
+  padding: 0;
+  width: 222px;
+  height: 49px;
+  line-height: 49px;
+  color: #3C1E1E;
+  background-color: #FFEB00;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  text-align: center;
 `;
 
 const LoginPresenter = ({
@@ -47,6 +55,7 @@ const LoginPresenter = ({
   password,
   handleChange,
   handleSubmit,
+  kakaoSuccess,
   loading,
   error
 }) => (
@@ -75,8 +84,12 @@ const LoginPresenter = ({
       />
       <Submit type="submit" value="Submit"></Submit>
     </Form>
-    <Social href="accounts/login/kakao/"><KaKaoImg src={require("../../Assets/kakaoLoginBtn.png")}/></Social>
-    
+    <StyledKakaoLogin
+      jsKey={appKey}
+      onSuccess={kakaoSuccess}
+      onFailure={result => console.log(result)}
+      getProfile={true}
+    />
   </Container>
 );
 
