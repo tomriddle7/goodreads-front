@@ -48,7 +48,7 @@ const Submit = styled.input`
   color: #0b84fe;
 `;
 
-const SetinfoPresenter = ({ results, email, nickname, password, handleSubmit, error, loading }) =>
+const SetinfoPresenter = ({ results, email, nickname, password1, password2, handleSubmit, handleChange, error, loading }) =>
   loading ? (
     <>
       <Helmet>
@@ -69,7 +69,8 @@ const SetinfoPresenter = ({ results, email, nickname, password, handleSubmit, er
         type="email"
         name="email"
         placeholder="email"
-        value={results.username}
+        value={email}
+        onChange={handleChange}
         required
       />
       <Label htmlFor="nickname">닉네임</Label>
@@ -77,7 +78,26 @@ const SetinfoPresenter = ({ results, email, nickname, password, handleSubmit, er
         type="nickname"
         name="nickname"
         placeholder="nickname"
-        value={results.nickname}
+        value={nickname}
+        onChange={handleChange}
+        required
+      />
+      <Label htmlFor="password1">Password1</Label>
+      <Input
+        type="password"
+        name="password1"
+        placeholder="password"
+        value={password1}
+        onChange={handleChange}
+        required
+      />
+      <Label htmlFor="password2">Password2</Label>
+      <Input
+        type="password"
+        name="password2"
+        placeholder="password"
+        value={password2}
+        onChange={handleChange}
         required
       />
       <Submit type="submit" value="Submit"></Submit>
