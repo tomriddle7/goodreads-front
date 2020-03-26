@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { booksApi } from "api";
+import Popup from "reactjs-popup";
 
 const Container = styled.div`
   font-size: 12px;
