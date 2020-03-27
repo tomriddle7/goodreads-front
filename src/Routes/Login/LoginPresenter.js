@@ -19,7 +19,7 @@ const Input = styled.input`
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 16px;
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
@@ -29,7 +29,7 @@ const Submit = styled.input`
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 16px;
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
@@ -39,13 +39,13 @@ const Submit = styled.input`
 const StyledKakaoLogin = styled(KakaoLogin)`
   display: inline-block;
   padding: 0;
-  width: 222px;
+  width: 100%;
   height: 49px;
   line-height: 49px;
   color: #3C1E1E;
   background-color: #FFEB00;
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: 16px;
   font-size: 16px;
   text-align: center;
 `;

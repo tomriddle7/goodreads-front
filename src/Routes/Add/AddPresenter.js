@@ -24,7 +24,7 @@ const Form = styled.form`
   flex-direction: row;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 16px;
   box-sizing: border-box;
 `;
 
@@ -73,7 +73,7 @@ const AddPresenter = ({
       </SearchDiv>
       <div>
         <Input
-          placeholder="게임, 앱, 스토리 등"
+          placeholder="나를 위한 단 한 권의 책"
           value={searchTerm}
           onChange={updateTerm}
         />
