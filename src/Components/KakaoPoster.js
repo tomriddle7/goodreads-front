@@ -98,15 +98,20 @@ const KakaoPoster = ({ isbn, name, bookImage, author, publisher, pub_year }) => 
       </Rating>
     </Container>
     <Actions>
-      <ModatlButton
-        onClick={() => {
-          alert("서적이 등록되었습니다.");
-          booksApi.addBook(isbn);
-          close();
-        }}
+      <Popup
+        trigger={<ModatlButton
+          onClick={() => {
+            booksApi.addBook(isbn);
+            close();
+          }}
+        >
+          등록하기
+        </ModatlButton>}
+        position="top center"
+        closeOnDocumentClick
       >
-        등록하기
-      </ModatlButton>
+        <span>서적이 등록되었습니다.</span>
+      </Popup>
       <ModatlButton
         onClick={() => {
           close();
